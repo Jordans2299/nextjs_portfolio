@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styles from '../styles/projects.module.css';
 
-import forumImg from "../public/images/intramuralCS.png";
+import forumImg from "../public/images/intramuralcs.png";
 
 export default function Projects() {
     return (
