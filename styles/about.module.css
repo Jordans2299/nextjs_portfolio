@@ -1,0 +1,113 @@
+.about{
+    overflow: auto;
+    /* margin-bottom: 5rem; */
+    margin-top: 5rem;
+    /* background-image: url("../public/images/colorful_street_night.jpeg") ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: black; */
+}
+.mainContent{
+    /* background-color: rgb(1, 1, 19); */
+    width: 90%;
+    margin: 0 auto;
+
+}
+.about .container{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    /* background-color: rgba(16, 16, 16,.6); */
+    /* padding-top: 20rem; */
+}
+.aboutHeading{
+    text-align: center;
+    text-transform: uppercase;
+    /* height: fit-content; */
+    margin: 6rem;
+
+}
+.aboutHeading h1{
+    font-size: 8rem;
+    opacity: .45;
+}
+.aboutHeading h6{
+    font-size: 3rem;
+    font-weight: 300;
+}
+.bio{
+    width: 70%;
+}
+.profileImg{
+    margin-top: 3rem;
+    flex: 1;
+    text-align: center;
+}
+.profileImg img{
+    width: 298px;
+    height: 300px;
+    /* background-color: rgb(218, 218, 218); */
+    border-radius: 1rem;
+    padding: .5rem;
+}
+.aboutDetails{
+    flex: 1;
+    padding-right: 5rem;
+} 
+.aboutDetails p{
+    text-indent: 3rem;
+    line-height: 2.5rem;
+    width: 56%;
+    margin: 0 auto;
+}
+#bio{
+    margin-top: 4rem;
+}
+#noIndent{
+    text-indent: 0px;
+    font-size: 15px;
+}
+.socialMedia{
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+.socialMedia i{
+    font-size: 5rem;
+    transition:  color 450ms;
+    color: rgba(255, 255, 255, 0.89);
+    width: 100%;
+}
+.navList{
+    display: flex;
+    width: 50%;
+    margin: auto;
+    justify-content: space-evenly;
+}
+.navList li{
+    list-style: none;
+}
+.navList p{
+    font-size: 1.3rem;
+    margin: 0;
+    text-indent: 0;
+}
+.mobileMedia{
+    display: none;
+}
+
+.companyImg{
+    margin: 0 1rem;
+}
+.affiliations{
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+.invisible{
+    display: none;
+}
+@media(Max-width:450px){
+    .about .container{
+        display: block;
+    }
+}

@@ -1,0 +1,26 @@
+.copyright{
+    width: 100%;
+    text-align: center;
+    padding: 2rem 0;
+    position: relative;
+}
+/* .up a{
+    position: absolute;
+    width: 5rem;
+    height: 5rem;
+    background-color: #eee;
+    top: -2.5rem;
+    right: 5rem;
+    border-radius: 100%;
+    display: flex;
+    animation: pulse 2s infinite;
+}
+.up a i{
+    color:navy;
+    font-size: 2rem;
+    margin: auto;
+    cursor: pointer;
+} */
+.copyright p{
+    font-size: 1.5rem;
+}

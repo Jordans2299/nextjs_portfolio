@@ -1,0 +1,38 @@
+.wrapper {
+    max-width: 100%;
+    /* border: 2px solid black; */
+    padding: 2rem 0;
+    margin-bottom: 5rem;
+    /* background-color: rgba(159, 202, 255,.2); */
+    /* overflow: hidden; */
+  }
+  
+  .affiliations{
+    /* margin: 0 auto; */
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    /* white-space: nowrap; */
+    animation: affiliations 10s linear infinite;
+
+}
+.logoWrapper{
+    position: relative;
+    left: 0%;
+}
+.clone {
+    position: relative;
+    left: 100%;
+    animation: affiliations 10s linear infinite;
+    /* animation-delay: 2s; */
+  }
+    
+  @keyframes affiliations {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+  

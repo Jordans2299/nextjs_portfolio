@@ -1,0 +1,25 @@
+
+.contactForm{
+    width: 70%;
+    margin: 0 auto;
+}
+
+.contactForm label{
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.projHeader{
+    text-align: center;
+    margin-bottom: 1rem;
+    margin-top: 5rem;
+  }
+  .projHeader h1{
+    font-size: 4rem;
+    font-weight: 500;
+  }
+  .projHeader h6{
+    font-size: 1.5rem;
+    font-weight: 200;
+  }
