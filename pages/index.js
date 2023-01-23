@@ -15,7 +15,7 @@ export default function Home() {
     <div className='page-container'>
       <Head>
         <title>Jordan's Portfolio</title>
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://kit.fontawesome.com/1c37cb57ef.js" crossorigin="anonymous"></script>
       </Head>
       <Navbar />

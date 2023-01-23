@@ -60,12 +60,11 @@ export default function About() {
                     </div>
 
                 </div>
-                <div className={styles.mobileMedia}>
+                {/* <div className={styles.mobileMedia}>
                     <ul className={styles.navList}>
                         <li>
                             <a href="https://www.linkedin.com/in/jordan-stone-051a25142/" className={styles.iconLink}>
                                 <i className="fab fa-linkedin"></i>
-                                {/* <FontAwesomeIcon icon={faPlus} /> */}
                             </a>
                         </li>
                         <li>
@@ -81,7 +80,7 @@ export default function About() {
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> */}
             </div>
             {/* <div className={styles.affiliations}>
                 {logos}

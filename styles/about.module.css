@@ -15,7 +15,7 @@
 }
 .about .container{
     display: flex;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     justify-content: center;
     /* background-color: rgba(16, 16, 16,.6); */
     /* padding-top: 20rem; */
@@ -106,8 +106,8 @@
 .invisible{
     display: none;
 }
-@media(Max-width:450px){
+/* @media(Max-width:6000px){
     .about .container{
         display: block;
     }
-}
+} */
