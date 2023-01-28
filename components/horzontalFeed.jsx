@@ -12,8 +12,8 @@ const HorizontalFeed = () => {
   const logoWidths = [244, 261, 100];
   const logos = [];
   for (let i = 0; i < companies.length; ++i) {
-    logos.push(<div className={styles.logoWrapper} ><Image style={"display: inline-block, margin: 0 1rem"} src={companies[i]} width={logoWidths[i]} height={100} /></div>)
-    logos.push(<div className={`${styles.logoWrapper} ${styles.clone}`} ><Image style={"display: inline-block, margin: 0 1rem"} src={companies[i]} width={logoWidths[i]} height={100} /></div>)
+    logos.push(<div className={styles.logoWrapper} ><Image className={styles.logoImg} style={"display: inline-block, margin: 0 1rem"} src={companies[i]} width={logoWidths[i]} height={100} /></div>)
+    logos.push(<div className={`${styles.logoWrapper} ${styles.clone}`} ><Image className={styles.logoImg} style={"display: inline-block, margin: 0 1rem"} src={companies[i]} width={logoWidths[i]} height={100} /></div>)
   }
 
   return (
