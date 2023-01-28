@@ -3,6 +3,9 @@
     width: 70%;
     margin: 0 auto;
 }
+.contact{
+  margin-top: 10rem;
+}
 
 .contactForm label{
     font-size: 1.5rem;
@@ -13,7 +16,6 @@
 .projHeader{
     text-align: center;
     margin-bottom: 1rem;
-    margin-top: 5rem;
   }
   .projHeader h1{
     font-size: 4rem;
