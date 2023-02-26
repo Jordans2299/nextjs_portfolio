@@ -16,9 +16,10 @@ body{
         rgba(7, 0, 26, .6), 
         rgba(62, 43, 82, 0.8)),
         url("images/purple_bg.jpg") no-repeat center fixed; */
-    background-color: rgb(31, 31, 31);
+    background-color: rgb(39, 39, 39);
     /* background-color: rgb(11, 11, 11); */
     background-size: cover;
+    overflow-x:hidden;
 }
 .section{
     padding: 6rem;

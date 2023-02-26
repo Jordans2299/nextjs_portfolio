@@ -5,11 +5,13 @@ import luffyImg from '../public/images/luffy.png';
 import attImg from '../public/images/att_logo.png';
 import ubsImg from '../public/images/ubs_logo.png';
 import washuImg from '../public/images/washu_logo.png';
+import resumeImg from '../public/images/resume_img.png';
+import profilePic from '../public/images/profilePic.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faPlus,
     faX, faLinkedin
-  } from "@fortawesome/free-solid-svg-icons";
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function About() {
 
@@ -31,15 +33,20 @@ export default function About() {
                         <h1>Jordan</h1>
                         <h6>Stone</h6>
                     </div>
-                    <p className={styles.bio} id="bio">
-                        Hello! I am a computer science graduate from Washington University in St. Louis with a passion for using technology to improve efficiency and equity in the financial world. During my time at university, I gained experience building frontend web applications and recently spent a lot of time learning about smart contract development and machine learning. After graduation, I started working full-time at AT&T, where I have been for over 6 months now, focusing on backend APIs and cloud migration. I am excited to continue learning and making an impact through my work.
-                    </p>
-                    <br />
+                    <div className={styles.bioAndImage}>
+                        <p className={`${styles.bio} ${styles.animate_from_left} ${styles.animate_to_center}`} id="bio">
+                            Hello! I am a computer science graduate from Washington University in St. Louis with a passion for using technology to improve efficiency and equity in the financial world. During my time at university, I gained experience building frontend web applications and recently spent a lot of time learning about smart contract development and machine learning. After graduation, I started working full-time at AT&T, where I have been for over 6 months now, focusing on backend APIs and cloud migration. I am excited to continue learning and making an impact through my work.
+                        </p>
+                        <div className={`${styles.imageSection} ${styles.animate_from_right} ${styles.animate_to_center}`}>
+                            <Image src={profilePic} className={styles.profilePic}></Image>
+                            <div className={styles.imageOutline}></div>
+                        </div>
+                    </div>
                     <div className={styles.socialMedia}>
                         <ul className={styles.navList}>
                             <li>
                                 <a href="https://www.linkedin.com/in/jordan-stone-051a25142/" className={styles.iconLink}>
-                                <FontAwesomeIcon className={styles.invisible} icon={faPlus}/>
+                                    <FontAwesomeIcon className={styles.invisible} icon={faPlus} />
                                     <i className="fab fa-linkedin"></i>
                                     {/* <FontAwesomeIcon icon={faLinkedin} /> */}
                                 </a>
@@ -50,41 +57,16 @@ export default function About() {
                                 </a>
                             </li>
                             <li>
-                                <a href="/assets/Stone_Jordan_Resume_Senior_fall.pdf" className={styles.iconLink}>
-                                    <i className="fas fa-file">
-                                        <p>Resume</p>
-                                    </i>
+                                <a href="/assets/Stone_Jordan_Resume_Spring_2023.pdf">
+                                    <Image src={resumeImg} width={70} height={70}></Image>
                                 </a>
+
                             </li>
                         </ul>
                     </div>
 
                 </div>
-                {/* <div className={styles.mobileMedia}>
-                    <ul className={styles.navList}>
-                        <li>
-                            <a href="https://www.linkedin.com/in/jordan-stone-051a25142/" className={styles.iconLink}>
-                                <i className="fab fa-linkedin"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/Jordans2299" className={styles.iconLink}>
-                                <i className="fab fa-github"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/assets/Stone_Jordan_Resume_Senior_fall.pdf" className={styles.iconLink}>
-                                <i className="fas fa-file">
-                                    <p>Resume</p>
-                                </i>
-                            </a>
-                        </li>
-                    </ul>
-                </div> */}
             </div>
-            {/* <div className={styles.affiliations}>
-                {logos}
-            </div> */}
         </section>
     )
 }

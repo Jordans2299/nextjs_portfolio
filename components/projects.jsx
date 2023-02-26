@@ -17,7 +17,7 @@ export default function Projects() {
             </div>
             <div className={styles.projects} >
                 <div className={styles.projCard}>
-                    <a name="Portfolio" className={styles.pageLink}></a>
+                    <a name="Portfolio" className={styles.pageLink} href="https://forum.jordanstoneportfolio.com">
                     <div className={styles.projItem}>
                         <div className={styles.projImg}>
                             <a href="https://forum.jordanstoneportfolio.com">
@@ -27,7 +27,7 @@ export default function Projects() {
                         <div className={styles.projDescription}>
                             <h6>Web Development</h6>
                             <a className={styles.projLink} href="https://forum.jordanstoneportfolio.com">
-                                <h1 className={styles.projTitle}>Computer Science Forum Page</h1>
+                                <h1 className={styles.projTitle}>CS Forum </h1>
                             </a>
 
                             <p>
@@ -39,10 +39,11 @@ export default function Projects() {
                         </div>
                         <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
                     </div>
+                    </a>
                 </div>
 
                 <div className={styles.projCard}>
-                    <a name="Portfolio" className={styles.pageLink}></a>
+                    <a name="Portfolio" className={styles.pageLink} href="https://money.jordanstoneportfolio.com">
                     <div className={styles.projItem}>
                         <div className={styles.projImg}>
                             <a href="https://money.jordanstoneportfolio.com">
@@ -55,16 +56,17 @@ export default function Projects() {
                                 <h1 className={styles.projTitle}>Ethereum Money Pool </h1>
                             </a>
                             <p>
-                            Money Pools is a blockchain application that allows users to create a contract, called a "Money Pool," on the Goerli Ethereum test network. The creator of the pool can specify which wallet addresses to add to the pool and set a target amount to raise. The winner of the pool is determined by the total amount added to the pool.
+                            Money Pools is a blockchain application that allows users to create a contract, called a "Money Pool," on the Goerli Ethereum test network. The winner is randomly selected from all participants.
                             </p>
                             <a href="https://github.com/Jordans2299/Money-pool-solidity-nextjs" className={styles.projDetails}>View Details</a>
                         </div>
                         <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
                     </div>
+                    </a>
                 </div>
 
                 <div className={styles.projCard}>
-                    <a name="Portfolio" className={styles.pageLink}></a>
+                    <a name="Portfolio" className={styles.pageLink} href="http://getthedailydose.com">
                     <div className={styles.projItem}>
                         <div className={styles.projImg}>
                             <a href="https://getthedailydose.com">
@@ -83,10 +85,11 @@ export default function Projects() {
                         </div>
                         <div className={`${styles.projStatus} ${styles.inProgress}`}> In Progress</div>
                     </div>
+                    </a>
                 </div>
 
                 <div className={styles.projCard}>
-                    <a name="Portfolio" className={styles.pageLink}></a>
+                    <a name="Portfolio" className={styles.pageLink} href="https://smile.jordanstoneportfolio.com">
                     <div className={styles.projItem}>
                         <div className={styles.projImg}>
                             <a href="https://smile.jordanstoneportfolio.com">
@@ -105,6 +108,7 @@ export default function Projects() {
                         </div>
                         <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
                     </div>
+                    </a>
                 </div>
 
                 <div className={styles.projCard}>
@@ -130,7 +134,7 @@ export default function Projects() {
                 </div>
 
                 <div className={styles.projCard}>
-                    <a name="Portfolio" className={styles.pageLink}></a>
+                    <a name="Portfolio" className={styles.pageLink} href="https://quiz.jordanstoneportfolio.com">
                     <div className={styles.projItem}>
                         <div className={styles.projImg}>
                             <a href="https://quiz.jordanstoneportfolio.com">
@@ -149,6 +153,7 @@ export default function Projects() {
                         </div>
                         <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
                     </div>
+                    </a>
                 </div>
             </div>
         </div>
