@@ -42,10 +42,10 @@ export default function Projects() {
                     </a>
                 </div>
                 <div className={styles.projCard}>
-                    <a name="Portfolio" className={styles.pageLink} href="https://forum.jordanstoneportfolio.com">
+                    <a name="Portfolio" className={styles.pageLink} href="http://forum.jordanstoneportfolio.com">
                         <div className={styles.projItem}>
                             <div className={styles.projImg}>
-                                <a href="https://forum.jordanstoneportfolio.com">
+                                <a href="http://forum.jordanstoneportfolio.com">
                                     <Image src={forumImg} />
                                 </a>
                             </div>
