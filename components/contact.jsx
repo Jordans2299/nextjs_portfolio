@@ -9,7 +9,10 @@ export default function Contact() {
                     <h1>Contact</h1>
                     <h6>Let's work together</h6>
                 </div>
+                
                 <form method="POST" data-netlify="true" className={styles.contactForm} name="contact">
+                <input type="hidden" name="form-name" value="contact" />
+
                     <label for="name">Name: </label>
                     <input type="text" id="name" name="name" placeholder="Enter your name..." required />
                     <label for="email">Email: </label>

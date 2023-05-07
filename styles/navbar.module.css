@@ -5,9 +5,9 @@
     justify-content: center; 
     align-items: center;  
     padding: 2rem;
-    background-color: rgb(39, 39, 39);;
+    /* background-color: rgb(39, 39, 39);; */
     /* background: linear-gradient(to right, #26143E, #3F3F3F); */
-    /* background-color: rgb(41, 22, 22); */
+    background-color: rgb(55, 55, 55);
     /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
 }
 .stickyNav{

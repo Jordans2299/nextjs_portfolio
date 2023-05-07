@@ -7,6 +7,7 @@ import doseImg from "../public/images/daily_dose.png";
 import smileImg from "../public/images/smile.png";
 import mattImg from '../public/images/matt_levine_bot.png';
 import quizImg from "../public/images/quiz.png";
+import odinImg from "../public/images/odin_office.png";
 
 export default function Projects() {
     return (
@@ -15,144 +16,149 @@ export default function Projects() {
                 <h1>Projects</h1>
                 <h6>View some of my recent work</h6>
             </div>
+
             <div className={styles.projects} >
                 <div className={styles.projCard}>
+                    <a name="Portfolio" className={styles.pageLink} href="https://getthedailydose.com">
+                        <div className={styles.projItem}>
+                            <div className={styles.projImg}>
+                                <a href="https://getthedailydose.com">
+                                    <Image src={doseImg} />
+                                </a>
+                            </div>
+                            <div className={styles.projDescription}>
+                                <h6>Web Development - AI Newsletter</h6>
+                                <a className={styles.profLink} href="http://getthedailydose.com">
+                                    <h1 className={styles.projTitle}>Daily Dose</h1>
+                                </a>
+                                <p>
+                                    Automated daily email newsletter that fetches articles from external APIs, summarizes them, and leverages OpenAI for a comprehensive and engaging result. The App runs on an AWS EC2 instance using Docker containers.
+                                </p>
+                                <p className={styles.technologies}>Python, Flask, Next.js, HTML, CSS, AWS EC2, Docker</p>
+                                <a href="https://github.com/Jordans2299/daily_dose_backend" className={styles.projDetails}>View Source</a>
+                            </div>
+                            <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
+                        </div>
+                    </a>
+                </div>
+                <div className={styles.projCard}>
                     <a name="Portfolio" className={styles.pageLink} href="https://forum.jordanstoneportfolio.com">
-                    <div className={styles.projItem}>
-                        <div className={styles.projImg}>
-                            <a href="https://forum.jordanstoneportfolio.com">
-                                <Image src={forumImg} />
-                            </a>
-                        </div>
-                        <div className={styles.projDescription}>
-                            <h6>Web Development</h6>
-                            <a className={styles.projLink} href="https://forum.jordanstoneportfolio.com">
-                                <h1 className={styles.projTitle}>CS Forum </h1>
-                            </a>
+                        <div className={styles.projItem}>
+                            <div className={styles.projImg}>
+                                <a href="https://forum.jordanstoneportfolio.com">
+                                    <Image src={forumImg} />
+                                </a>
+                            </div>
+                            <div className={styles.projDescription}>
+                                <h6>Web Development</h6>
+                                <a className={styles.projLink} href="http://forum.jordanstoneportfolio.com">
+                                    <h1 className={styles.projTitle}>CS Forum </h1>
+                                </a>
 
-                            <p>
-                                Forum website built for asking CS related questions.
-                                Supports image uploading, CRUD operations, pagination, and user authentication. It
-                                also allows for users to sort and search previously created posts.
-                            </p>
-                            <a href="https://github.com/Jordans2299/intramuralCS" className={styles.projDetails}>View Details</a>
+                                <p>
+                                    Discover a comprehensive forum website where users can ask and answer CS related questions. Our platform supports image uploading, CRUD operations, pagination, user authentication, and post sorting/searching capabilities.
+                                </p>
+
+                                <p className={styles.technologies}>PHP, Laravel, CSS, MySQL,HTML, Javascript</p>
+                                <a href="https://github.com/Jordans2299/intramuralCS" className={styles.projDetails}>View Source</a>
+                            </div>
+                            <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
                         </div>
-                        <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
-                    </div>
                     </a>
                 </div>
 
                 <div className={styles.projCard}>
                     <a name="Portfolio" className={styles.pageLink} href="https://money.jordanstoneportfolio.com">
-                    <div className={styles.projItem}>
-                        <div className={styles.projImg}>
-                            <a href="https://money.jordanstoneportfolio.com">
-                                <Image src={moneyImg} />
-                            </a>
+                        <div className={styles.projItem}>
+                            <div className={styles.projImg}>
+                                <a href="https://money.jordanstoneportfolio.com">
+                                    <Image src={moneyImg} />
+                                </a>
+                            </div>
+                            <div className={styles.projDescription}>
+                                <h6>Web Development/Smart Contracts</h6>
+                                <a className={styles.profLink} href="https://money.jordanstoneportfolio.com">
+                                    <h1 className={styles.projTitle}>Ethereum Money Pool </h1>
+                                </a>
+                                <p>
+                                    Ethereum Money Pool platform uses smart contracts for secure, decentralized transactions. Create custom pools, invite participants with wallet addresses, and a random selection algorithm determines the winner who receives the entire pool.
+                                </p>
+                                <p className={styles.technologies}>Next.js, Solidity, Javascript, CSS, HTML, Tailwind</p>
+                                <a href="https://github.com/Jordans2299/Money-pool-solidity-nextjs" className={styles.projDetails}>View Source</a>
+                            </div>
+                            <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
                         </div>
-                        <div className={styles.projDescription}>
-                            <h6>Web Development/Smart Contracts</h6>
-                            <a className={styles.profLink} href="https://money.jordanstoneportfolio.com">
-                                <h1 className={styles.projTitle}>Ethereum Money Pool </h1>
-                            </a>
-                            <p>
-                            Money Pools is a blockchain application that allows users to create a contract, called a "Money Pool," on the Goerli Ethereum test network. The winner is randomly selected from all participants.
-                            </p>
-                            <a href="https://github.com/Jordans2299/Money-pool-solidity-nextjs" className={styles.projDetails}>View Details</a>
-                        </div>
-                        <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
-                    </div>
-                    </a>
-                </div>
-
-                <div className={styles.projCard}>
-                    <a name="Portfolio" className={styles.pageLink} href="http://getthedailydose.com">
-                    <div className={styles.projItem}>
-                        <div className={styles.projImg}>
-                            <a href="https://getthedailydose.com">
-                                <Image src={doseImg} />
-                            </a>
-                        </div>
-                        <div className={styles.projDescription}>
-                            <h6>Web Development</h6>
-                            <a className={styles.profLink} href="http://getthedailydose.com">
-                                <h1 className={styles.projTitle}>Daily Dose</h1>
-                            </a>
-                            <p>
-                            The Daily Dose is a web app that allows users to see brief summaries of news articles in real-time in a variety of topics.
-                            </p>
-                            <a href="https://github.com/Jordans2299/daily-dose-site" className={styles.projDetails}>View Details</a>
-                        </div>
-                        <div className={`${styles.projStatus} ${styles.inProgress}`}> In Progress</div>
-                    </div>
                     </a>
                 </div>
 
                 <div className={styles.projCard}>
                     <a name="Portfolio" className={styles.pageLink} href="https://smile.jordanstoneportfolio.com">
-                    <div className={styles.projItem}>
-                        <div className={styles.projImg}>
-                            <a href="https://smile.jordanstoneportfolio.com">
-                                <Image src={smileImg} />
-                            </a>
+                        <div className={styles.projItem}>
+                            <div className={styles.projImg}>
+                                <a href="https://smile.jordanstoneportfolio.com">
+                                    <Image src={smileImg} />
+                                </a>
+                            </div>
+                            <div className={styles.projDescription}>
+                                <h6>Web Development</h6>
+                                <a className={styles.profLink} href="https://smile.jordanstoneportfolio.com">
+                                    <h1 className={styles.projTitle}>World Happiness</h1>
+                                </a>
+                                <p>
+                                    Provides interactive visualizations and informative descriptions based on happiness index data. Explore global happiness trends and patterns, as well as the factors that contribute to overall happiness with our user-friendly platform.
+                                </p>
+                                <p className={styles.technologies}>D3.js, Javascript, CSS, HTML, Bootstrap, Python</p>
+                                <a href="https://github.com/Jordans2299/smile-visualizations" className={styles.projDetails}>View Source</a>
+                            </div>
+                            <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
                         </div>
-                        <div className={styles.projDescription}>
-                            <h6>Web Development</h6>
-                            <a className={styles.profLink} href="https://smile.jordanstoneportfolio.com">
-                                <h1 className={styles.projTitle}>World Happiness</h1>
-                            </a>
-                            <p>
-                                Team project displaying visualizations for based on Happiness index data.
-                            </p>
-                            <a href="https://github.com/Jordans2299/smile-visualizations" className={styles.projDetails}>View Details</a>
-                        </div>
-                        <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
-                    </div>
                     </a>
                 </div>
 
                 <div className={styles.projCard}>
-                    <a name="Portfolio" className={styles.pageLink}></a>
+                    <a name="Portfolio" className={styles.pageLink} href="https://chrome.google.com/webstore/detail/odin-office-gpt-3-email-a/ifcmjhbpkjjpfmfkfakbgighemgioein?hl=en"></a>
                     <div className={styles.projItem}>
                         <div className={styles.projImg}>
-                            <a href="https://63bcf5f2d8e5654dd5be778d--peppy-dieffenbachia-0cc34b.netlify.app/">
-                                <Image src={mattImg} />
+                            <a href="https://chrome.google.com/webstore/detail/odin-office-gpt-3-email-a/ifcmjhbpkjjpfmfkfakbgighemgioein?hl=en">
+                                <Image src={odinImg} />
                             </a>
                         </div>
                         <div className={styles.projDescription}>
-                            <h6>Web Development</h6>
-                            <a className={styles.profLink} href="https://63bcf5f2d8e5654dd5be778d--peppy-dieffenbachia-0cc34b.netlify.app/">
-                                <h1 className={styles.projTitle}>Matt Levine Bot</h1>
+                            <h6>Browser Extension</h6>
+                            <a className={styles.profLink} href="https://chrome.google.com/webstore/detail/odin-office-gpt-3-email-a/ifcmjhbpkjjpfmfkfakbgighemgioein?hl=en">
+                                <h1 className={styles.projTitle}>Odin Office - AI Email Writer</h1>
                             </a>
                             <p>
-                                Uses GPT-3 API and prompt engineering to write a paragraph about any topic (especially finance) in the writing style of Matt Levine.
+                                Odin Office, a Chrome extension, uses OpenAI's GPT-3 API to generate personalized emails. Integrated with Gmail, it offers professional communication without typing.
                             </p>
-                            <a href="https://github.com/Jordans2299/gpt3-writer-starter" className={styles.projDetails}>View Details</a>
+                            <p className={styles.technologies}>Javascript, CSS, HTML, OpenAI API</p>
+                            <a href="https://github.com/Jordans2299/email_gpt3_extension" className={styles.projDetails}>View Source</a>
                         </div>
-                        <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
+                        <div className={`${styles.projStatus} ${styles.inProgress}`}> In Progress</div>
                     </div>
                 </div>
 
                 <div className={styles.projCard}>
                     <a name="Portfolio" className={styles.pageLink} href="https://quiz.jordanstoneportfolio.com">
-                    <div className={styles.projItem}>
-                        <div className={styles.projImg}>
-                            <a href="https://quiz.jordanstoneportfolio.com">
-                                <Image src={quizImg} />
-                            </a>
+                        <div className={styles.projItem}>
+                            <div className={styles.projImg}>
+                                <a href="https://quiz.jordanstoneportfolio.com">
+                                    <Image src={quizImg} />
+                                </a>
+                            </div>
+                            <div className={styles.projDescription}>
+                                <h6>Web Development</h6>
+                                <a className={styles.profLink} href="https://quiz.jordanstoneportfolio.com">
+                                    <h1 className={styles.projTitle}>Quiz App</h1>
+                                </a>
+                                <p>
+                                    This app provides a fun way to test your knowledge. It fetches 10 random questions using an external API and scores your answers at the end, offering an engaging user experience. Give it a try and see how you fare!
+                                </p>
+                                <p className={styles.technologies}>Vue.js, Javascript, CSS, HTML</p>
+                                <a href="https://github.com/Jordans2299/quiz_app" className={styles.projDetails}>View Source</a>
+                            </div>
+                            <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
                         </div>
-                        <div className={styles.projDescription}>
-                            <h6>Web Development</h6>
-                            <a className={styles.profLink} href="https://quiz.jordanstoneportfolio.com">
-                                <h1 className={styles.projTitle}>Quiz App</h1>
-                            </a>
-                            <p>
-                                Fetches 10 random questions from an API and gives a score at the end.
-                            </p>
-                            <a href="https://github.com/Jordans2299/quiz_app" className={styles.projDetails}>View Details</a>
-                        </div>
-                        <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
-                    </div>
                     </a>
                 </div>
             </div>

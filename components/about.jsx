@@ -57,7 +57,7 @@ export default function About() {
                                 </a>
                             </li>
                             <li>
-                                <a href="/assets/Stone_Jordan_Resume_Spring_2023.pdf">
+                                <a href="/assets/RESUME.pdf">
                                     <Image src={resumeImg} width={70} height={70}></Image>
                                 </a>
 
