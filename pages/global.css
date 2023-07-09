@@ -6,7 +6,8 @@
 html{
     font-size: 10px;
     font-family: Roboto, sans-serif;
-    color: #eee;
+    /* color: #eee; */
+    color: black;
 }
 body{
     /* width: 100%; */
@@ -16,8 +17,8 @@ body{
         rgba(7, 0, 26, .6), 
         rgba(62, 43, 82, 0.8)),
         url("images/purple_bg.jpg") no-repeat center fixed; */
-    /* background-color: rgb(39, 39, 39); */
-    background-color: rgb(55, 55, 55);
+    /* background-color: rgb(55, 55, 55); */
+    background-color: rgb(236, 238, 245);
     background-size: cover;
     overflow-x:hidden;
 }
@@ -26,7 +27,8 @@ body{
 }
 a{
     text-decoration: none;
-    color: #eee;
+    /* color: #eee; */
+    color: black;
 }
 p{
     font-size: 1.8em;
@@ -110,7 +112,7 @@ input[type="submit"]:hover{
     color: #0077B5;
 }
 .fa-github:hover{
-    color: rgb(28, 28, 28);
+    color: rgb(70, 70, 70);
 }
 
 .fa-file:hover{
