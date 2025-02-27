@@ -35,7 +35,7 @@ export default function About() {
                     </div>
                     <div className={styles.bioAndImage}>
                         <p className={`${styles.bio} ${styles.animate_from_left} ${styles.animate_to_center}`} id="bio">
-                            Hello! I am a computer science graduate from Washington University in St. Louis with a passion for using technology to improve efficiency and equity in the financial world. During my time at university, I gained experience building frontend web applications and recently spent a lot of time learning about smart contract development and machine learning. After graduation, I started working full-time at AT&T, where I have been for over 6 months now, focusing on backend APIs and cloud migration. I am excited to continue learning and making an impact through my work.
+                        Hello! I am a computer science graduate from Washington University in St. Louis with a passion for using technology to improve efficiency and equity in the financial world. During university, I built frontend web applications and explored smart contract development and machine learning. Since graduating, I've been working full-time at AT&T, where I contribute to backend APIs, cloud migration, and enhancements to an internal technician iOS app that cuts follow-up visits and saves millions annually. I’m excited to keep learning and making a real impact through my work.
                         </p>
                         <div className={`${styles.imageSection} ${styles.animate_from_right} ${styles.animate_to_center}`}>
                             <Image src={profilePic} className={styles.profilePic}></Image>
@@ -60,7 +60,6 @@ export default function About() {
                                 <a href="/assets/RESUME.pdf">
                                     <Image src={resumeImg} width={70} height={70}></Image>
                                 </a>
-
                             </li>
                         </ul>
                     </div>
