@@ -2,15 +2,13 @@
     list-style: none;
     height: 100%;
     display: flex;
-    justify-content: center; 
-    align-items: center;  
+    justify-content: center;
+    align-items: center;
     padding: 2rem;
-    /* background-color: rgb(39, 39, 39);; */
-    /* background: linear-gradient(to right, #26143E, #3F3F3F); */
-    /* background-color: rgb(55, 55, 55); */
-    /* background-color: white; */
-    background-color: rgb(236, 238, 245);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* blend the navigation into the dark theme */
+    background: rgba(10, 10, 25, 0.8);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 .stickyNav{
     position: fixed;
@@ -24,7 +22,8 @@
     margin: 0 2rem;
 }
 .navLink{
-    color: black;
+    color: #e6e6e6;
+    transition: color 300ms;
 }
 .navLink:hover{
     color: rgb(137, 135, 236);
