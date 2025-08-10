@@ -39,7 +39,6 @@ export default function About() {
                         </p>
                         <div className={`${styles.imageSection} ${styles.animate_from_right} ${styles.animate_to_center}`}>
                             <Image src={profilePic} alt="Jordan Stone" className={styles.profilePic} />
-                            <div className={styles.imageOutline}></div>
                         </div>
                     </div>
                     <div className={styles.socialMedia}>
