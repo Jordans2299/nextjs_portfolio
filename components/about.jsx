@@ -5,7 +5,6 @@ import luffyImg from '../public/images/luffy.png';
 import attImg from '../public/images/att_logo.png';
 import ubsImg from '../public/images/ubs_logo.png';
 import washuImg from '../public/images/washu_logo.png';
-import resumeImg from '../public/images/resume_img.png';
 import profilePic from '../public/images/profilePic.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -56,8 +55,8 @@ export default function About() {
                                 </a>
                             </li>
                             <li>
-                                <a href="/assets/RESUME.pdf">
-                                    <Image src={resumeImg} width={70} height={70}></Image>
+                                <a href="/assets/RESUME.pdf" className={styles.iconLink}>
+                                    <i className="fas fa-file"></i>
                                 </a>
                             </li>
                         </ul>
