@@ -173,6 +173,13 @@
     margin: 0;
     text-indent: 0;
 }
+.iconLink{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
 .mobileMedia{
     display: none;
 }

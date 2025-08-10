@@ -55,8 +55,9 @@ export default function About() {
                                 </a>
                             </li>
                             <li>
-                                <a href="/assets/RESUME.pdf" className={styles.iconLink}>
-                                    <i className="fas fa-file"></i>
+                                <a href="/assets/RESUME.pdf" className={styles.iconLink} target="_blank" rel="noopener noreferrer">
+                                    <i className="fas fa-file-alt"></i>
+                                    <p>Resume</p>
                                 </a>
                             </li>
                         </ul>

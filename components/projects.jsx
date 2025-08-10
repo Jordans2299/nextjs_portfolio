@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useEffect } from 'react';
 import styles from '../styles/projects.module.css';
 
 import forumImg from "../public/images/intramuralcs.png";
@@ -10,6 +11,21 @@ import quizImg from "../public/images/quiz.png";
 import odinImg from "../public/images/odin_office.png";
 
 export default function Projects() {
+    useEffect(() => {
+        const cards = document.querySelectorAll(`.${styles.projCard}`);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(styles.show);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach((card) => observer.observe(card));
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <div className={styles.projectSection} id="projects">
             <div className={styles.projHeader}>
