@@ -2,10 +2,10 @@
     overflow: auto;
     /* margin-bottom: 5rem; */
     margin-top: 5rem;
-    /* background-image: url("../public/images/colorful_street_night.jpeg") ;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: black; */
+    /* Match the darker site backdrop with a subtle radial gradient */
+    background: radial-gradient(circle at top left, rgba(26,42,108,0.7) 0%, rgba(0,0,0,0.7) 100%);
+    padding: 2rem 0;
+    color: #e0e0e0;
 }
 .mainContent{
     /* background-color: rgb(1, 1, 19); */
@@ -106,40 +106,28 @@
 }
 .profilePic{
     border-radius: 1rem !important;
+    display: block;
+    filter: grayscale(60%);
+    transition: filter 0.4s ease, transform 0.4s ease;
 }
 .imageSection{
-    height: fit-content;
-    /* box-shadow: 5px 5px 5px rgb(38, 37, 85); */
-    /* box-shadow: 5px 5px 5px rgba(103, 101, 244,0.5); */
-}
-/* .imageSection:hover{
-    box-shadow: 5px 5px 5px rgb(103, 101, 244);
-} */
-
-/* .imageSection::before{
-    content: "";
-    height: 100%;
-    width: 100%;
-    border: solid .2rem rgb(36, 0, 119);
     position: relative;
-    left: 1rem;
-    top: 1rem;
-} */
-.imageSection::after{
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* background-color: rgb(36, 0, 119); */
-    opacity: 0.2;
+    height: fit-content;
     border-radius: 1rem;
+    overflow: hidden;
+    background: linear-gradient(135deg, #6d5dfc, #37d5d6);
+    padding: .5rem;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-/* .imageSection:hover::after{
-    opacity: 0.2;
-} */
+.imageSection:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+}
+.imageSection:hover .profilePic{
+    filter: grayscale(0%);
+    transform: rotate(-2deg);
+}
 .aboutDetails{
     flex: 1;
     /* padding-right: 5rem; */
@@ -164,10 +152,12 @@
 }
 .socialMedia i{
     font-size: 7rem;
-    transition:  color 450ms;
-    /* color: rgba(255, 255, 255, 0.89); */
-    color: rgba(0, 0, 0);
+    transition:  color 450ms, transform 300ms;
+    color: rgba(255, 255, 255, 0.89);
     width: 100%;
+}
+.socialMedia i:hover{
+    transform: translateY(-3px);
 }
 .navList{
     display: flex;
@@ -182,6 +172,13 @@
     font-size: 1.3rem;
     margin: 0;
     text-indent: 0;
+}
+.iconLink{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
 }
 .mobileMedia{
     display: none;

@@ -5,7 +5,6 @@ import luffyImg from '../public/images/luffy.png';
 import attImg from '../public/images/att_logo.png';
 import ubsImg from '../public/images/ubs_logo.png';
 import washuImg from '../public/images/washu_logo.png';
-import resumeImg from '../public/images/resume_img.png';
 import profilePic from '../public/images/profilePic.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -35,11 +34,10 @@ export default function About() {
                     </div>
                     <div className={styles.bioAndImage}>
                         <p className={`${styles.bio} ${styles.animate_from_left} ${styles.animate_to_center}`} id="bio">
-                        Hello! I am a computer science graduate from Washington University in St. Louis with a passion for using technology to improve efficiency and equity in the financial world. During university, I built frontend web applications and explored smart contract development and machine learning. Since graduating, I've been working full-time at AT&T, where I contribute to backend APIs, cloud migration, and enhancements to an internal technician iOS app that cuts follow-up visits and saves millions annually. I’m excited to keep learning and making a real impact through my work.
+                        Hello! My name is Jordan Stone, and I am a computer science graduate from Washington University in St. Louis with a passion for using technology to improve efficiency and equity throughout the world. During university, I built fullstack web applications and explored smart contract development and machine learning. Since graduating, I've been working full-time at AT&T, where I contribute to backend APIs, cloud migration, and enhancements to an internal technician iOS app that cuts follow-up visits and saves millions annually. I am deeply passionate about building AI technologies that prioritize user privacy and long-term sustainability. My current work focuses on empowering individuals with local, secure AI tools that respect data ownership and reduce reliance on energy-intensive cloud infrastructure. I am excited to keep learning and making a real impact through my work.
                         </p>
                         <div className={`${styles.imageSection} ${styles.animate_from_right} ${styles.animate_to_center}`}>
-                            <Image src={profilePic} className={styles.profilePic}></Image>
-                            <div className={styles.imageOutline}></div>
+                            <Image src={profilePic} alt="Jordan Stone" className={styles.profilePic} />
                         </div>
                     </div>
                     <div className={styles.socialMedia}>
@@ -57,8 +55,9 @@ export default function About() {
                                 </a>
                             </li>
                             <li>
-                                <a href="/assets/RESUME.pdf">
-                                    <Image src={resumeImg} width={70} height={70}></Image>
+                                <a href="/assets/Resume_2025.pdf" className={styles.iconLink} target="_blank" rel="noopener noreferrer">
+                                    <i className="fas fa-file-alt"></i>
+                                    {/* <p>Resume</p> */}
                                 </a>
                             </li>
                         </ul>

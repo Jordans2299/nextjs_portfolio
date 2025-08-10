@@ -6,19 +6,13 @@
 html{
     font-size: 10px;
     font-family: Roboto, sans-serif;
-    /* color: #eee; */
-    color: black;
+    color: #e6e6e6;
+    scroll-behavior: smooth;
 }
 body{
-    /* width: 100%; */
     height: 100%;
-
-    /* background: linear-gradient(
-        rgba(7, 0, 26, .6), 
-        rgba(62, 43, 82, 0.8)),
-        url("images/purple_bg.jpg") no-repeat center fixed; */
-    /* background-color: rgb(55, 55, 55); */
-    background-color: rgb(236, 238, 245);
+    background: radial-gradient(circle at 20% 20%, #1a2a6c 0%, #000 100%);
+    background-attachment: fixed;
     background-size: cover;
     overflow-x:hidden;
 }
@@ -27,8 +21,7 @@ body{
 }
 a{
     text-decoration: none;
-    /* color: #eee; */
-    color: black;
+    color: inherit;
 }
 p{
     font-size: 1.8em;

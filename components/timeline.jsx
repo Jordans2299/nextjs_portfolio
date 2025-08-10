@@ -1,9 +1,22 @@
-import { Fragment } from 'react';
+import { useEffect } from 'react';
 import styles from '../styles/timeline.module.css';
 
 const Timeline = () => {
+    useEffect(() => {
+        const cards = document.querySelectorAll(`.${styles.container}`);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(styles.show);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        cards.forEach((card) => observer.observe(card));
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        // <Fragment>
         <div id='timeline' className={styles.timelineSection}>
             <div className={styles.projHeader}>
                 <h1>Experiences</h1>
@@ -57,7 +70,6 @@ const Timeline = () => {
                 </div>
             </div>
         </div>
-        // {/* </Fragment> */}
     )
 }
 
