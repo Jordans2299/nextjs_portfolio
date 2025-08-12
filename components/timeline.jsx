@@ -65,7 +65,7 @@ const Timeline = () => {
                 <div className={`${styles.container} ${styles.right}`}>
                     <div className={styles.content}>
                         <h2>July 2022 - Now</h2>
-                        <p>AT&T Full Time Software Engineer</p>
+                        <p>AT&T Senior Software Engineer</p>
                     </div>
                 </div>
             </div>

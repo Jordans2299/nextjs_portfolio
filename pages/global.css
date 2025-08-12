@@ -11,7 +11,7 @@ html{
 }
 body{
     height: 100%;
-    background: radial-gradient(circle at 20% 20%, #1a2a6c 0%, #000 100%);
+    background: radial-gradient(circle at 20% 20%, #1a2a6c 0%, #040019 100%);
     background-attachment: fixed;
     background-size: cover;
     overflow-x:hidden;
@@ -109,5 +109,24 @@ input[type="submit"]:hover{
 }
 
 .fa-file:hover{
-    color: rgb(75, 75, 75);
+    color: rgb(51, 51, 51);
+}
+
+.fa-file-alt:hover{
+    color: rgb(115, 113, 246)
+}
+
+@media (max-width: 768px){
+    html{
+        font-size: 8px;
+    }
+    .section{
+        padding: 3rem 2rem;
+    }
+}
+
+@media (max-width: 480px){
+    html{
+        font-size: 6px;
+    }
 }
