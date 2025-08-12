@@ -2,8 +2,7 @@
     overflow: auto;
     /* margin-bottom: 5rem; */
     margin-top: 5rem;
-    /* Match the darker site backdrop with a subtle radial gradient */
-    background: radial-gradient(circle at top left, rgba(26,42,108,0.7) 0%, rgba(0,0,0,0.7) 100%);
+    background-color: rgba(255,255,255,0.05);
     padding: 2rem 0;
     color: #e0e0e0;
 }
@@ -225,6 +224,13 @@
     }
     .navList{
         width: 100%;
+    }
+    .profileImg img{
+        width: 70%;
+        height: auto;
+    }
+    .socialMedia i{
+        font-size: 5rem;
     }
 
 }

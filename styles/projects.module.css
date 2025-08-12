@@ -1,5 +1,7 @@
 .projectSection{
     margin-top: 1rem;
+    background-color: rgba(255,255,255,0.05);
+    padding: 2rem 0;
 }
 .projects{
     display: flex;
@@ -106,7 +108,7 @@ color: rgb(137, 135, 236);
 
 @media (max-width:800px){
     .projCard{
-        width: 90%;
+        width: 80%;
         margin: 1rem auto;
     }
 }
