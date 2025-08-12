@@ -201,8 +201,10 @@
     margin-bottom: 3rem;
 }
 @media(Max-width:800px){
-    .bioAndImage{
-        display: block;
+.bioAndImage{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         margin: auto;
         width: 100%;
         margin-bottom: 4rem;
@@ -219,15 +221,16 @@
         text-indent: 0;
     }
     .imageSection{
-        margin: 0 auto;
+        order: -1;
+        margin: 0 auto 2rem;
+        width: 50%;
+    }
+    .profilePic{
         width: 100%;
+        height: auto;
     }
     .navList{
         width: 100%;
-    }
-    .profileImg img{
-        width: 70%;
-        height: auto;
     }
     .socialMedia i{
         font-size: 5rem;
