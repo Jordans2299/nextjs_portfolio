@@ -205,14 +205,19 @@
     .bioAndImage{
         display: block;
         margin: auto;
-        width: fit-content;
+        width: 100%;
         margin-bottom: 4rem;
     }
     .aboutDetails{
         width: 100%;
     }
     .bio{
-        display: none;
+        display: block;
+        width: 100%;
+    }
+    #bio{
+        width: 100%;
+        text-indent: 0;
     }
     .imageSection{
         margin: 0 auto;

@@ -13,13 +13,24 @@
     border-radius: 1rem;
     background-color: rgba(255,255,255,0.05);
     margin: 1rem 5rem;
-    height: 45rem;
+    min-height: 45rem;
+    height: auto;
     border: 1px solid rgba(255,255,255,0.1);
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
     color: #e0e0e0;
     opacity: 0;
     transform: translateY(30px);
     transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease;
+}
+
+.projItem{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.projDescription{
+    flex-grow: 1;
 }
 .show{
     opacity: 1;
@@ -91,4 +102,11 @@ color: rgb(137, 135, 236);
     margin-top: 1.5rem !important;
     font-style: italic;
     font-size: small !important;
+}
+
+@media (max-width:800px){
+    .projCard{
+        width: 90%;
+        margin: 1rem auto;
+    }
 }
