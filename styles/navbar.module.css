@@ -47,9 +47,43 @@
 .stickyNav .sticky{
     border: none;
 }
+
+.hamburger{
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.bar{
+    width: 25px;
+    height: 3px;
+    background-color: #e6e6e6;
+    margin: 4px 0;
+}
+
+.showMenu{
+    display: flex !important;
+}
+
 @media(Max-width:800px){
     .stickyNav{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .stickyNav .navList{
         display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 1rem 0;
+        align-items: center;
+        background: rgba(10, 10, 25, 0.8);
+    }
+    .stickyNav .navList li{
+        margin: 1rem 0;
+    }
+    .hamburger{
+        display: flex;
     }
 }
 
