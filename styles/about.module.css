@@ -2,7 +2,7 @@
     overflow: auto;
     /* margin-bottom: 5rem; */
     margin-top: 5rem;
-    background-color: rgba(255,255,255,0.05);
+    background-color: radial-gradient(circle at top left, rgba(26,42,108,0.7) 0%, rgba(0,0,0,0.7) 100%);
     padding: 2rem 0;
     color: #e0e0e0;
 }
@@ -145,6 +145,9 @@
     text-indent: 0px;
     font-size: 15px;
 }
+.socialMediaMobile {
+    display: none;
+}
 .socialMedia{
     margin-top: 2rem;
     margin-bottom: 5rem;
@@ -223,7 +226,7 @@
     .imageSection{
         order: -1;
         margin: 0 auto 2rem;
-        width: 50%;
+        width: 35%;
     }
     .profilePic{
         width: 100%;
@@ -232,8 +235,31 @@
     .navList{
         width: 100%;
     }
-    .socialMedia i{
+    /* .socialMedia i{
         font-size: 5rem;
+    } */
+    .socialMedia{
+        display: none
+    }
+    .socialMediaMobile {
+        margin-top: 2rem;
+        margin-bottom: 5rem;
+        display: block;
+    }
+    .socialMediaMobile i {
+        font-size: 5rem;
+        transition:  color 450ms, transform 300ms;
+        color: rgba(255, 255, 255, 0.89);
+        width: 100%;
     }
 
+    .navListMobile {
+        display: flex;
+        width: 100%;
+        margin: auto;
+        justify-content: space-evenly;
+    }
+    .navListMobile li{
+    list-style: none;
+}
 }
