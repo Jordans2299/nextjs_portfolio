@@ -250,14 +250,14 @@
         font-size: 5rem;
         transition:  color 450ms, transform 300ms;
         color: rgba(255, 255, 255, 0.89);
-        width: 100%;
     }
 
     .navListMobile {
         display: flex;
         width: 100%;
         margin: auto;
-        justify-content: space-evenly;
+        justify-content: center;
+        gap: 2rem;
     }
     .navListMobile li{
     list-style: none;
