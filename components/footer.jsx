@@ -8,7 +8,7 @@ export default function Footer() {
             {/* <div className={styles.up} id="up">
                 <a href="index.html"><i className="fas fa-chevron-up"></i></a>
             </div> */}
-            <p> &copy; 2023 Jordan Stone</p>
+            <p> &copy; 2025 Jordan Stone</p>
         </footer>
     )
 }
