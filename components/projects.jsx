@@ -9,6 +9,7 @@ import smileImg from "../public/images/smile.png";
 import mattImg from '../public/images/matt_levine_bot.png';
 import quizImg from "../public/images/quiz.png";
 import odinImg from "../public/images/odin_office.png";
+import arbiterImg from "../public/images/arbiter_telescope_purple.png";
 
 export default function Projects() {
     useEffect(() => {
@@ -34,6 +35,32 @@ export default function Projects() {
             </div>
 
             <div className={styles.projects} >
+                <div className={styles.projCard} id="arbiter-card">
+                    <a name="Arbiter" className={styles.pageLink} href="https://apps.apple.com/us/app/arbiter-offline-private-ai/id6747954532">
+                        <div className={styles.projItem}>
+                            <div className={styles.projImg}>
+                                <a href="https://apps.apple.com/us/app/arbiter-offline-private-ai/id6747954532">
+                                    <Image src={arbiterImg} alt="Screens showcasing Arbiter, the on-device AI assistant" />
+                                </a>
+                            </div>
+                            <div className={styles.projDescription}>
+                                <h6>iOS - Local LLM Assistant</h6>
+                                <a className={styles.profLink} href="#arbiter-card">
+                                    <h1 className={styles.projTitle}>Arbiter</h1>
+                                </a>
+                                <p>
+                                    Arbiter is a privacy-first offline AI assistant that runs entirely on the iPhone, keeping every conversation on-device while letting users swap between lightweight, open-source models tailored to their workflow or needs.
+                                </p>
+                                {/* <p>
+                                    It handles offline inference, local document uploads for instant summaries, granular download controls, and complete telemetry-free privacy—optimized for iPhone 13 Pro or newer (6GB+ RAM).
+                                </p> */}
+                                <p className={styles.technologies}>Swift, SwiftUI, Core ML, llama.cpp, Firebase</p>
+                                <a href="https://www.askarbiter.ai/" className={styles.projDetails}>Learn More</a>
+                            </div>
+                            <div className={`${styles.projStatus} ${styles.inProgress}`}> Early Access</div>
+                        </div>
+                    </a>
+                </div>
                 <div className={styles.projCard}>
                     <a name="Portfolio" className={styles.pageLink} href="https://getthedailydose.com">
                         <div className={styles.projItem}>

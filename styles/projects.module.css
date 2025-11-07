@@ -105,7 +105,6 @@ color: rgb(137, 135, 236);
     font-style: italic;
     font-size: small !important;
 }
-
 @media (max-width:800px){
     .projCard{
         width: 60%;
