@@ -47,7 +47,7 @@ export default function About() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/assets/Resume_Fall_2025.pdf" className={styles.iconLink} target="_blank" rel="noopener noreferrer">
+                                    <a href="/assets/Resume_2026.pdf" className={styles.iconLink} target="_blank" rel="noopener noreferrer">
                                         <i className="fas fa-file-alt"></i>
                                     </a>
                                 </li>
@@ -75,7 +75,7 @@ export default function About() {
                                 </a>
                             </li>
                             <li>
-                                <a href="/assets/Resume_Fall_2025.pdf" className={styles.iconLink} target="_blank" rel="noopener noreferrer">
+                                <a href="/assets/Resume_2026.pdf" className={styles.iconLink} target="_blank" rel="noopener noreferrer">
                                     <i className="fas fa-file-alt"></i>
                                     {/* <p>Resume</p> */}
                                 </a>
