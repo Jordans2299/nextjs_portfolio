@@ -12,9 +12,10 @@
     width: 35rem;
     text-align: center;
     padding: 2rem;
+    position: relative;
     border-radius: 1rem;
     background-color: rgba(255,255,255,0.05);
-    margin: 1rem 5rem;
+    margin: 1rem 2rem;
     min-height: 45rem;
     height: auto;
     border: 1px solid rgba(255,255,255,0.1);
@@ -22,7 +23,7 @@
     color: #e0e0e0;
     opacity: 0;
     transform: translateY(30px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease, border-color 0.3s ease;
 }
 
 .projItem{
@@ -42,6 +43,7 @@
     cursor: pointer;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
     transform: translateY(-5px);
+    border-color: rgba(137, 135, 236, 0.35);
 }
 .projHeader{
     text-align: center;
@@ -50,7 +52,7 @@
 .projHeader h1{
     font-size: 4rem;
     font-weight: 500;
-    color: rgb(103, 101, 244);
+    color: rgb(137, 135, 236);
 }
 .projHeader h6{
     font-size: 1.5rem;
@@ -82,7 +84,7 @@
 .projDetails{
     display: block;
     margin-top: 2rem;
-    color: rgb(103, 101, 244);
+    color: rgb(137, 135, 236);
     font-size: 1.7rem;
 }
 .projDetails:hover{
@@ -95,7 +97,7 @@ color: rgb(137, 135, 236);
     color: white;
 }
 .completed{
-    color: green;
+    color: #4ade80;
 }
 .inProgress{
     color: rgb(196, 183, 66);
@@ -105,9 +107,160 @@ color: rgb(137, 135, 236);
     font-style: italic;
     font-size: small !important;
 }
+.featured {
+    flex: 0 0 calc(100% - 10rem);
+    max-width: calc(100% - 10rem);
+    min-height: unset;
+    text-align: left;
+    border-color: rgba(137, 135, 236, 0.4);
+    box-shadow: 0 0 30px rgba(137, 135, 236, 0.15), 1px 2px 4px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(135deg, rgba(109, 93, 252, 0.07), rgba(55, 213, 214, 0.03));
+}
+.featured .projItem {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 4rem;
+}
+.featured .projImg {
+    width: 22rem;
+    height: 22rem;
+    flex-shrink: 0;
+    margin: 0;
+}
+.featured .projDescription p {
+    width: 100%;
+    text-align: left;
+}
+.featuredLabel {
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgb(137, 135, 236);
+    margin-bottom: 1.5rem;
+}
+.metrics {
+    font-size: 1.25rem !important;
+    color: rgba(137, 135, 236, 0.8) !important;
+    letter-spacing: 0.04em;
+    margin-top: 0.5rem !important;
+    margin-bottom: 1.5rem !important;
+    font-style: normal !important;
+    width: 100% !important;
+}
+.featureList {
+    text-align: left;
+    padding-left: 2rem;
+    margin: 1.2rem 0;
+}
+.featureList li {
+    font-size: 1.35rem;
+    color: rgba(232, 232, 240, 0.7);
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+}
+.projLinks {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+.titleRow {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+.earlyAccessBadge {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    background-color: rgba(196, 183, 66, 0.12);
+    border: 1px solid rgba(196, 183, 66, 0.35);
+    border-radius: 10rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgb(196, 183, 66);
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+}
+.appStoreBtn {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2.2rem;
+    background-color: rgba(232, 232, 240, 0.9);
+    color: #0a0a0a;
+    border-radius: 0.8rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 200ms ease;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+.appStoreBtn:hover {
+    background-color: #ffffff;
+}
+.websiteLink {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2.2rem;
+    border: 1px solid rgba(137, 135, 236, 0.4);
+    border-radius: 0.8rem;
+    font-size: 1.4rem;
+    color: rgb(137, 135, 236);
+    text-decoration: none;
+    transition: border-color 200ms ease, background-color 200ms ease;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+.websiteLink:hover {
+    border-color: rgb(137, 135, 236);
+    background-color: rgba(137, 135, 236, 0.08);
+}
+
 @media (max-width:800px){
     .projCard{
-        width: 60%;
+        width: 85%;
         margin: 1rem auto;
+    }
+    .featured {
+        flex: unset;
+        width: 90%;
+        max-width: unset;
+        text-align: center;
+    }
+    .featured .projItem {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .featured .projImg {
+        width: 14rem;
+        height: 14rem;
+        margin: auto;
+    }
+    .featured .projDescription p {
+        text-align: left;
+    }
+    .titleRow {
+        justify-content: center;
+    }
+    .projLinks {
+        justify-content: center;
+    }
+    .appStoreBtn, .websiteLink {
+        font-size: 1.6rem;
+        padding: 1.2rem 2.5rem;
+    }
+}
+@media (max-width:480px){
+    .projCard{
+        width: 92%;
+    }
+    .featured {
+        width: 96%;
     }
 }

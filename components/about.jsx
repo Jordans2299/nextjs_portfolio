@@ -1,88 +1,38 @@
 import styles from '../styles/about.module.css';
 import Image from 'next/image';
-import zoroImg from '../public/images/zoro.png';
-import luffyImg from '../public/images/luffy.png';
-import attImg from '../public/images/att_logo.png';
-import ubsImg from '../public/images/ubs_logo.png';
-import washuImg from '../public/images/washu_logo.png';
 import profilePic from '../public/images/profilePic.jpg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faPlus,
-    faX, faLinkedin
-} from "@fortawesome/free-solid-svg-icons";
 
 export default function About() {
-
-    const companies = [attImg, ubsImg, washuImg];
-    const logoWidths = [244, 261, 100];
-    const logos = [];
-    for (let i = 0; i < companies.length; ++i) {
-        logos.push(<div className={styles.logoWrapper} ><Image style={"margin: 0 1rem"} src={companies[i]} width={logoWidths[i]} height={100} /></div>)
-    }
-
     return (
         <section className={styles.about} id="about">
             <div className={styles.container}>
-                {/* <div className={styles.profileImg}>
-                    <Image src={luffyImg} width={500} height={617} />
-                </div> */}
                 <div className={styles.aboutDetails}>
                     <div className={styles.aboutHeading}>
                         <h1>Jordan</h1>
                         <h6>Stone</h6>
+                        <p className={styles.tagline}>Senior Software Engineer · iOS · Full-Stack · AI</p>
                     </div>
                     <div className={styles.bioAndImage}>
-                        <div className={styles.socialMediaMobile}>
-                            <ul className={styles.navListMobile}>
-                                <li>
-                                    <a href="https://www.linkedin.com/in/jordan-stone-051a25142/" className={styles.iconLink}>
-                                        <FontAwesomeIcon className={styles.invisible} icon={faPlus} />
-                                        <i className="fab fa-linkedin"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://github.com/Jordans2299" className={styles.iconLink}>
-                                        <i className="fab fa-github"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/assets/Resume_2026.pdf" className={styles.iconLink} target="_blank" rel="noopener noreferrer">
-                                        <i className="fas fa-file-alt"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                         <p className={`${styles.bio} ${styles.animate_from_left} ${styles.animate_to_center}`} id="bio">
-                        Hello! My name is Jordan Stone, and I am a computer science graduate from Washington University in St. Louis with a passion for using technology to improve efficiency and equity throughout the world. During university, I built fullstack web applications and explored smart contract development and machine learning. Since graduating, I've been working full-time at AT&T, where I contribute to backend APIs, cloud migration, and enhancements to an internal technician iOS app that cuts follow-up visits and saves millions annually. I am deeply passionate about building AI technologies that prioritize user privacy and long-term sustainability. My current work focuses on empowering individuals with local, secure AI tools that respect data ownership and reduce reliance on energy-intensive cloud infrastructure. I am excited to keep learning and making a real impact through my work.
+                            I&apos;m a software engineer with 3.5 years of full-stack and iOS experience at AT&T, where I own features for a production app used by 10,000+ field technicians daily, contributing to an estimated $5M in annual cost savings. I recently designed and shipped Arbiter, a privacy-first on-device AI assistant for iOS, going from concept to 1,000+ App Store downloads in under 2 months. I care deeply about building fast, secure software that makes a real impact.
                         </p>
                         <div className={`${styles.imageSection} ${styles.animate_from_right} ${styles.animate_to_center}`}>
-                            <Image src={profilePic} alt="Jordan Stone" className={styles.profilePic} />
+                            <Image src={profilePic} alt="Jordan Stone" className={styles.profilePic} width={298} height={300} />
                         </div>
                     </div>
                     <div className={styles.socialMedia}>
                         <ul className={styles.navList}>
                             <li>
-                                <a href="https://www.linkedin.com/in/jordan-stone-051a25142/" className={styles.iconLink}>
-                                    <FontAwesomeIcon className={styles.invisible} icon={faPlus} />
-                                    <i className="fab fa-linkedin"></i>
-                                    {/* <FontAwesomeIcon icon={faLinkedin} /> */}
-                                </a>
+                                <a href="https://www.linkedin.com/in/jordan-stone-051a25142/" className={styles.socialBtn} target="_blank" rel="noopener noreferrer">LinkedIn</a>
                             </li>
                             <li>
-                                <a href="https://github.com/Jordans2299" className={styles.iconLink}>
-                                    <i className="fab fa-github"></i>
-                                </a>
+                                <a href="https://github.com/Jordans2299" className={styles.socialBtn} target="_blank" rel="noopener noreferrer">GitHub</a>
                             </li>
                             <li>
-                                <a href="/assets/Resume_2026.pdf" className={styles.iconLink} target="_blank" rel="noopener noreferrer">
-                                    <i className="fas fa-file-alt"></i>
-                                    {/* <p>Resume</p> */}
-                                </a>
+                                <a href="/assets/Resume_2026.pdf" className={styles.resumeBtn} target="_blank" rel="noopener noreferrer">Resume</a>
                             </li>
                         </ul>
                     </div>
-
                 </div>
             </div>
         </section>

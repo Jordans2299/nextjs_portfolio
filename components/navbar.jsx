@@ -8,6 +8,7 @@ export default function NavBar() {
 
     return (
         <nav className={styles.stickyNav} id="stickyNav">
+            <a href="#about" className={styles.brand}>JS</a>
             <div className={styles.hamburger} onClick={toggleMenu}>
                 <span className={styles.bar}></span>
                 <span className={styles.bar}></span>

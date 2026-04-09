@@ -35,31 +35,35 @@ export default function Projects() {
             </div>
 
             <div className={styles.projects} >
-                <div className={styles.projCard} id="arbiter-card">
-                    <a name="Arbiter" className={styles.pageLink} href="https://apps.apple.com/us/app/arbiter-offline-private-ai/id6747954532">
-                        <div className={styles.projItem}>
-                            <div className={styles.projImg}>
-                                <a href="https://apps.apple.com/us/app/arbiter-offline-private-ai/id6747954532">
-                                    <Image src={arbiterImg} alt="Screens showcasing Arbiter, the on-device AI assistant" />
-                                </a>
-                            </div>
-                            <div className={styles.projDescription}>
-                                <h6>iOS - Local LLM Assistant</h6>
-                                <a className={styles.profLink} href="#arbiter-card">
-                                    <h1 className={styles.projTitle}>Arbiter</h1>
-                                </a>
-                                <p>
-                                    Arbiter is a privacy-first offline AI assistant that runs entirely on the iPhone, keeping every conversation on-device while letting users swap between lightweight, open-source models tailored to their workflow or needs.
-                                </p>
-                                {/* <p>
-                                    It handles offline inference, local document uploads for instant summaries, granular download controls, and complete telemetry-free privacy—optimized for iPhone 13 Pro or newer (6GB+ RAM).
-                                </p> */}
-                                <p className={styles.technologies}>Swift, SwiftUI, Core ML, llama.cpp, Firebase</p>
-                                <a href="https://www.askarbiter.ai/" className={styles.projDetails}>Learn More</a>
-                            </div>
-                            <div className={`${styles.projStatus} ${styles.inProgress}`}> Early Access</div>
+                <div className={`${styles.projCard} ${styles.featured}`} id="arbiter-card">
+                    <div className={styles.featuredLabel}>Featured Project</div>
+                    <span className={styles.earlyAccessBadge}>Early Access</span>
+                    <div className={styles.projItem}>
+                        <div className={styles.projImg}>
+                            <Image src={arbiterImg} alt="Screens showcasing Arbiter, the on-device AI assistant" width={220} height={220} />
                         </div>
-                    </a>
+                        <div className={styles.projDescription}>
+                            <h6>iOS - Local LLM Assistant</h6>
+                            <div className={styles.titleRow}>
+                                <h1 className={styles.projTitle}>Arbiter</h1>
+                            </div>
+                            <p className={styles.metrics}>1,000+ downloads &nbsp;·&nbsp; Built solo in ~3 months &nbsp;·&nbsp; Live on the App Store</p>
+                            <p>
+                                Privacy-first offline AI assistant for iPhone. Every conversation stays fully on-device with no data ever leaving the phone. Swap between open-source models tailored to your workflow or needs.
+                            </p>
+                            <ul className={styles.featureList}>
+                                <li>Real-time web search to augment on-device generation</li>
+                                <li>Support for reasoning models, vision models, and file analysis</li>
+                                <li>Siri integration with background execution optimizations</li>
+                                <li>Runs quantized LLMs via MLX framework and a llama.cpp Swift wrapper</li>
+                            </ul>
+                            <p className={styles.technologies}>Swift, SwiftUI, Core ML, MLX, llama.cpp, Firebase</p>
+                            <div className={styles.projLinks}>
+                                <a href="https://apps.apple.com/us/app/arbiter-offline-private-ai/id6747954532" className={styles.appStoreBtn} target="_blank" rel="noopener noreferrer">↓ App Store</a>
+                                <a href="https://www.askarbiter.ai/" className={styles.websiteLink} target="_blank" rel="noopener noreferrer">askarbiter.ai →</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className={styles.projCard}>
                     <a name="Portfolio" className={styles.pageLink} href="https://getthedailydose.com">

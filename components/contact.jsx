@@ -13,12 +13,12 @@ export default function Contact() {
                 <form method="POST" data-netlify="true" className={styles.contactForm} name="contact">
                     <input type="hidden" name="form-name" value="contact" />
 
-                    <label for="name">Name </label>
+                    <label htmlFor="name">Name </label>
                     <input type="text" id="name" name="name" placeholder="Enter your name..." required />
-                    <label for="email">Email </label>
+                    <label htmlFor="email">Email </label>
                     <input type="email" id="email" name="email" placeholder="Enter your email..." required />
-                    <label for="subject">Subject </label>
-                    <textarea name="subject" id="subject" cols="10" rows="10"></textarea>
+                    <label htmlFor="subject">Subject </label>
+                    <textarea name="subject" id="subject" rows="10" placeholder="What's on your mind?"></textarea>
                     <input className={styles.submitBtn} type="submit" value="Submit" name="submit" />
                 </form>
             </div>
