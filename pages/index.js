@@ -1,5 +1,6 @@
 
 import Head from 'next/head'
+import Script from 'next/script'
 import Navbar from "../components/navbar.jsx";
 import About from "../components/about.jsx";
 import Projects from "../components/projects.jsx";
@@ -16,9 +17,9 @@ export default function Home() {
       <Head>
         <title>Jordan's Portfolio</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="https://kit.fontawesome.com/1c37cb57ef.js" crossorigin="anonymous"></script>
         <link rel="icon" href="/myIcon.ico" />
       </Head>
+      <Script src="https://kit.fontawesome.com/1c37cb57ef.js" crossOrigin="anonymous" strategy="lazyOnload" />
       <Navbar />
       <About />
       <HorzontalFeed />

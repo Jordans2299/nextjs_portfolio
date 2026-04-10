@@ -17,7 +17,7 @@ export default function About() {
                             I&apos;m a software engineer with 3.5 years of full-stack and iOS experience at AT&T, where I own features for a production app used by 10,000+ field technicians daily, contributing to an estimated $5M in annual cost savings. I recently designed and shipped Arbiter, a privacy-first on-device AI assistant for iOS, going from concept to 1,000+ App Store downloads in under 2 months. I care deeply about building fast, secure software that makes a real impact.
                         </p>
                         <div className={`${styles.imageSection} ${styles.animate_from_right} ${styles.animate_to_center}`}>
-                            <Image src={profilePic} alt="Jordan Stone" className={styles.profilePic} width={298} height={300} />
+                            <Image src={profilePic} alt="Jordan Stone" className={styles.profilePic} width={298} height={300} loading="eager" priority />
                         </div>
                     </div>
                     <div className={styles.socialMedia}>

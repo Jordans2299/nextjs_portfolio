@@ -13,12 +13,12 @@ const HorizontalFeed = () => {
   for (let i = 0; i < companies.length; ++i) {
     logos.push(
       <div key={`logo-${i}`} className={styles.logoWrapper}>
-        <Image className={styles.logoImg} src={companies[i]} width={logoWidths[i]} height={100} alt={companyNames[i]} />
+        <Image className={styles.logoImg} src={companies[i]} width={logoWidths[i]} height={100} alt={companyNames[i]} style={{ width: `${logoWidths[i]}px`, height: 'auto' }} />
       </div>
     );
     logos.push(
       <div key={`logo-clone-${i}`} className={`${styles.logoWrapper} ${styles.clone}`}>
-        <Image className={styles.logoImg} src={companies[i]} width={logoWidths[i]} height={100} alt={companyNames[i]} />
+        <Image className={styles.logoImg} src={companies[i]} width={logoWidths[i]} height={100} alt={companyNames[i]} style={{ width: `${logoWidths[i]}px`, height: 'auto' }} />
       </div>
     );
   }
