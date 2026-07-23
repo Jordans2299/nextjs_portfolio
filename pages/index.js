@@ -4,6 +4,7 @@ import Script from 'next/script'
 import Navbar from "../components/navbar.jsx";
 import About from "../components/about.jsx";
 import Projects from "../components/projects.jsx";
+import GithubPortfolio from "../components/githubPortfolio.jsx";
 import HorzontalFeed from '../components/horzontalFeed.jsx';
 import Timeline from '../components/timeline.jsx';
 import Contact from '../components/contact.jsx';
@@ -24,6 +25,7 @@ export default function Home() {
       <About />
       <HorzontalFeed />
       <Projects/>
+      <GithubPortfolio />
       <Timeline />
       <Contact />
       <Footer />
