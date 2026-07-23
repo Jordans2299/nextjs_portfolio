@@ -10,40 +10,19 @@ const PORTFOLIO_QUERY = `
       pinnedItems(first: 6, types: REPOSITORY) {
         nodes {
           ... on Repository {
-            name
-            description
-            url
-            homepageUrl
-            isPrivate
-            updatedAt
-            stargazerCount
-            forkCount
-            primaryLanguage { name color }
-            repositoryTopics(first: 6) {
-              nodes { topic { name } }
-            }
-            languages(first: 5, orderBy: { field: SIZE, direction: DESC }) {
-              totalSize
-              edges {
-                size
-                node { name color }
-              }
-            }
-            defaultBranchRef {
-              target {
-                ... on Commit {
-                  history(first: 3) {
-                    nodes {
-                      oid
-                      messageHeadline
-                      committedDate
-                      url
-                    }
-                  }
-                }
-              }
-            }
+            ...RepositoryDetails
           }
+        }
+      }
+      repositories(
+        first: 6
+        ownerAffiliations: OWNER
+        privacy: PUBLIC
+        isFork: false
+        orderBy: { field: PUSHED_AT, direction: DESC }
+      ) {
+        nodes {
+          ...RepositoryDetails
         }
       }
       contributionsCollection {
@@ -56,6 +35,42 @@ const PORTFOLIO_QUERY = `
               date
               contributionCount
               contributionLevel
+            }
+          }
+        }
+      }
+    }
+  }
+
+  fragment RepositoryDetails on Repository {
+    name
+    description
+    url
+    homepageUrl
+    isPrivate
+    updatedAt
+    stargazerCount
+    forkCount
+    primaryLanguage { name color }
+    repositoryTopics(first: 6) {
+      nodes { topic { name } }
+    }
+    languages(first: 5, orderBy: { field: SIZE, direction: DESC }) {
+      totalSize
+      edges {
+        size
+        node { name color }
+      }
+    }
+    defaultBranchRef {
+      target {
+        ... on Commit {
+          history(first: 3) {
+            nodes {
+              oid
+              messageHeadline
+              committedDate
+              url
             }
           }
         }

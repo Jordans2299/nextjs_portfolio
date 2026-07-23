@@ -29,16 +29,17 @@
     line-height: 1.6;
 }
 
-.projectGrid {
+.statGrid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 2rem;
     max-width: 118rem;
-    margin: 0 auto;
+    margin: 0 auto 2rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
 }
 
-.projectCard,
+.statGrid > div,
 .contributionPanel,
+.popularPanel,
 .activityPanel,
 .message {
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -47,138 +48,58 @@
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.35);
 }
 
-.projectCard {
+.statGrid > div {
     display: flex;
-    min-height: 31rem;
-    padding: 2.4rem;
+    padding: 1.8rem 2rem;
     flex-direction: column;
-    transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+    gap: 0.4rem;
 }
 
-.projectCard:hover {
-    border-color: rgba(137, 135, 236, 0.38);
-    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.42);
-    transform: translateY(-3px);
-}
-
-.cardHeading,
-.activityHeading {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1.6rem;
-}
-
-.cardHeading h3,
-.activityHeading h3 {
-    margin-top: 0.6rem;
-    font-size: 2.35rem;
+.statGrid strong {
+    color: #e8e8f0;
+    font-size: 2.4rem;
     font-weight: 500;
 }
 
-.cardHeading h3 a:hover,
-.activityHeading a:hover,
-.links a:hover {
-    color: rgb(137, 135, 236);
-}
-
-.githubMark {
-    color: rgba(232, 232, 240, 0.4);
-    font-size: 2.2rem;
-}
-
-.description {
-    min-height: 6.6rem;
-    margin: 2rem 0;
-    color: rgba(232, 232, 240, 0.72);
-    font-size: 1.4rem;
-    line-height: 1.55;
-}
-
-.languageBar {
-    display: flex;
-    width: 100%;
-    height: 0.6rem;
-    margin-bottom: 1.3rem;
-    overflow: hidden;
-    border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.08);
-}
-
-.languageBar span {
-    min-width: 0.3rem;
-}
-
-.meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.7rem 1.4rem;
-    color: rgba(232, 232, 240, 0.58);
-    font-size: 1.2rem;
-}
-
-.topics {
-    display: flex;
-    margin: 1.5rem 0 0;
-    padding: 0;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    list-style: none;
-}
-
-.topics li {
-    padding: 0.4rem 0.8rem;
-    border: 1px solid rgba(137, 135, 236, 0.2);
-    border-radius: 2rem;
-    color: rgba(186, 185, 255, 0.82);
-    font-size: 1.05rem;
-}
-
-.links {
-    display: flex;
-    margin-top: auto;
-    padding-top: 2rem;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-}
-
-.links a,
-.activityHeading a,
-.message a {
-    color: rgb(137, 135, 236);
-    font-size: 1.3rem;
-}
-
-.activityGrid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(30rem, 0.75fr);
-    gap: 2rem;
-    max-width: 118rem;
-    margin: 2rem auto 0;
+.statGrid span {
+    color: rgba(232, 232, 240, 0.55);
+    font-size: 1.15rem;
 }
 
 .contributionPanel,
+.popularPanel,
 .activityPanel {
     min-width: 0;
     padding: 2.4rem;
 }
 
-.contributionPanel figcaption {
-    display: flex;
-    margin-bottom: 2rem;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
+.contributionPanel {
+    max-width: 118rem;
+    margin: 0 auto;
 }
 
-.contributionPanel figcaption strong {
-    font-size: 2rem;
+.panelHeading {
+    display: flex;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.panelHeading h3 {
+    margin-top: 0.55rem;
+    font-size: 2.15rem;
     font-weight: 500;
 }
 
-.contributionPanel figcaption span {
-    color: rgba(232, 232, 240, 0.58);
-    font-size: 1.2rem;
+.panelHeading > span,
+.panelHeading > a {
+    color: rgba(232, 232, 240, 0.55);
+    font-size: 1.15rem;
+}
+
+.panelHeading > a {
+    color: rgb(137, 135, 236);
 }
 
 .calendarScroller {
@@ -236,14 +157,122 @@
     min-width: 0.9rem;
 }
 
-.activityHeading {
-    margin-bottom: 1.5rem;
+.trendHeading {
+    display: flex;
+    margin: 2.4rem 0 1.4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
 }
 
+.trendHeading strong {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.trendHeading span {
+    color: rgba(232, 232, 240, 0.48);
+    font-size: 1.05rem;
+}
+
+.trendChart {
+    display: grid;
+    height: 13rem;
+    grid-template-columns: repeat(12, minmax(2.6rem, 1fr));
+    gap: 0.7rem;
+}
+
+.trendMonth {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.trendTrack {
+    display: flex;
+    height: 10rem;
+    align-items: flex-end;
+    border-radius: 0.45rem;
+    background: rgba(255, 255, 255, 0.035);
+    overflow: hidden;
+}
+
+.trendTrack i {
+    display: block;
+    width: 100%;
+    min-height: 0;
+    border-radius: 0.45rem 0.45rem 0 0;
+    background: linear-gradient(180deg, rgb(137, 135, 236), rgba(137, 135, 236, 0.35));
+}
+
+.trendMonth > span {
+    overflow: hidden;
+    color: rgba(232, 232, 240, 0.46);
+    font-size: 0.95rem;
+    text-align: center;
+    text-overflow: ellipsis;
+}
+
+.detailGrid {
+    display: grid;
+    max-width: 118rem;
+    margin: 2rem auto 0;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2rem;
+}
+
+.popularList,
 .activityList {
     margin: 0;
     padding: 0;
     list-style: none;
+}
+
+.popularList li {
+    display: grid;
+    padding: 1.4rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: 1.2rem;
+}
+
+.rank {
+    color: rgba(137, 135, 236, 0.55);
+    font-size: 1.1rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.popularList a {
+    color: #e8e8f0;
+    font-size: 1.45rem;
+    font-weight: 500;
+}
+
+.popularList a:hover,
+.activityList a:hover span {
+    color: rgb(137, 135, 236);
+}
+
+.popularList p {
+    display: -webkit-box;
+    margin: 0.5rem 0 0.8rem;
+    overflow: hidden;
+    color: rgba(232, 232, 240, 0.58);
+    font-size: 1.15rem;
+    line-height: 1.45;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.repoMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    color: rgba(232, 232, 240, 0.5);
+    font-size: 1.05rem;
 }
 
 .activityList li {
@@ -252,9 +281,9 @@
 
 .activityList a {
     display: flex;
-    padding: 1.25rem 0;
+    padding: 1.4rem 0;
     flex-direction: column;
-    gap: 0.45rem;
+    gap: 0.5rem;
 }
 
 .activityList span {
@@ -278,7 +307,7 @@
 }
 
 .loadingCard {
-    height: 31rem;
+    height: 20rem;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 1.2rem;
     background: linear-gradient(100deg, rgba(255, 255, 255, 0.03) 30%, rgba(137, 135, 236, 0.09) 50%, rgba(255, 255, 255, 0.03) 70%);
@@ -299,6 +328,11 @@
     margin-bottom: 1.2rem;
     color: rgba(232, 232, 240, 0.68);
     font-size: 1.5rem;
+}
+
+.message a {
+    color: rgb(137, 135, 236);
+    font-size: 1.3rem;
 }
 
 .srOnly {
@@ -322,38 +356,34 @@
     .loadingCard {
         animation: none;
     }
-
-    .projectCard {
-        transition: none;
-    }
 }
 
-@media (max-width: 960px) {
-    .projectGrid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .activityGrid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 650px) {
+@media (max-width: 800px) {
     .section {
         padding: 7rem 2rem 3rem;
     }
 
-    .projectGrid,
-    .loadingGrid {
+    .statGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .detailGrid {
         grid-template-columns: 1fr;
     }
 
-    .projectCard {
-        min-height: 28rem;
+    .trendChart {
+        overflow-x: auto;
     }
+}
 
-    .contributionPanel figcaption {
+@media (max-width: 480px) {
+    .panelHeading,
+    .trendHeading {
         align-items: flex-start;
         flex-direction: column;
+    }
+
+    .loadingGrid {
+        grid-template-columns: 1fr;
     }
 }

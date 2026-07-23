@@ -11,7 +11,31 @@ import quizImg from "../public/images/quiz.png";
 import odinImg from "../public/images/odin_office.png";
 import arbiterImg from "../public/images/arbiter_telescope_purple.png";
 
-export default function Projects() {
+function GithubStats({ repository }) {
+    if (!repository) return null;
+
+    const updated = new Intl.DateTimeFormat('en', {
+        month: 'short',
+        year: 'numeric',
+    }).format(new Date(repository.updatedAt));
+
+    return (
+        <div className={styles.githubStats} aria-label={`GitHub statistics for ${repository.name}`}>
+            <span aria-label={`${repository.stars} GitHub stars`}>★ {repository.stars}</span>
+            <span aria-label={`${repository.forks} GitHub forks`}>⑂ {repository.forks}</span>
+            <span>Updated {updated}</span>
+        </div>
+    );
+}
+
+export default function Projects({ github }) {
+    const repositoryByName = new Map(
+        (github?.data?.projects || []).map((repository) => [
+            repository.name.toLowerCase(),
+            repository,
+        ]),
+    );
+
     useEffect(() => {
         const cards = document.querySelectorAll(`.${styles.projCard}`);
         const observer = new IntersectionObserver((entries) => {
@@ -81,6 +105,7 @@ export default function Projects() {
                                 Automated daily email newsletter that fetches articles from external APIs, summarizes them, and leverages OpenAI for a comprehensive and engaging result. The App runs on an AWS EC2 instance using Docker containers.
                             </p>
                             <p className={styles.technologies}>Python, Flask, Next.js, HTML, CSS, AWS EC2, Docker</p>
+                            <GithubStats repository={repositoryByName.get('daily_dose_backend')} />
                             <a href="https://github.com/Jordans2299/daily_dose_backend" className={styles.projDetails} target="_blank" rel="noopener noreferrer">View Source</a>
                         </div>
                         <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
@@ -102,6 +127,7 @@ export default function Projects() {
                                 Discover a comprehensive forum website where users can ask and answer CS related questions. Our platform supports image uploading, CRUD operations, pagination, user authentication, and post sorting/searching capabilities.
                             </p>
                             <p className={styles.technologies}>PHP, Laravel, CSS, MySQL, HTML, Javascript</p>
+                            <GithubStats repository={repositoryByName.get('intramuralcs')} />
                             <a href="https://github.com/Jordans2299/intramuralCS" className={styles.projDetails} target="_blank" rel="noopener noreferrer">View Source</a>
                         </div>
                         <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
@@ -124,6 +150,7 @@ export default function Projects() {
                                 Ethereum Money Pool platform uses smart contracts for secure, decentralized transactions. Create custom pools, invite participants with wallet addresses, and a random selection algorithm determines the winner who receives the entire pool.
                             </p>
                             <p className={styles.technologies}>Next.js, Solidity, Javascript, CSS, HTML, Tailwind</p>
+                            <GithubStats repository={repositoryByName.get('money-pool-solidity-nextjs')} />
                             <a href="https://github.com/Jordans2299/Money-pool-solidity-nextjs" className={styles.projDetails} target="_blank" rel="noopener noreferrer">View Source</a>
                         </div>
                         <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
@@ -146,6 +173,7 @@ export default function Projects() {
                                 Provides interactive visualizations and informative descriptions based on happiness index data. Explore global happiness trends and patterns, as well as the factors that contribute to overall happiness with our user-friendly platform.
                             </p>
                             <p className={styles.technologies}>D3.js, Javascript, CSS, HTML, Bootstrap, Python</p>
+                            <GithubStats repository={repositoryByName.get('smile-visualizations')} />
                             <a href="https://github.com/Jordans2299/smile-visualizations" className={styles.projDetails} target="_blank" rel="noopener noreferrer">View Source</a>
                         </div>
                         <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
@@ -168,6 +196,7 @@ export default function Projects() {
                                 Odin Office, a Chrome extension, uses OpenAI's GPT-3 API to generate personalized emails. Integrated with Gmail, it offers professional communication without typing.
                             </p>
                             <p className={styles.technologies}>Javascript, CSS, HTML, OpenAI API</p>
+                            <GithubStats repository={repositoryByName.get('email_gpt3_extension')} />
                             <a href="https://github.com/Jordans2299/email_gpt3_extension" className={styles.projDetails} target="_blank" rel="noopener noreferrer">View Source</a>
                         </div>
                         <div className={`${styles.projStatus} ${styles.inProgress}`}> In Progress</div>
@@ -190,6 +219,7 @@ export default function Projects() {
                                 This app provides a fun way to test your knowledge. It fetches 10 random questions using an external API and scores your answers at the end, offering an engaging user experience. Give it a try and see how you fare!
                             </p>
                             <p className={styles.technologies}>Vue.js, Javascript, CSS, HTML</p>
+                            <GithubStats repository={repositoryByName.get('quiz_app')} />
                             <a href="https://github.com/Jordans2299/quiz_app" className={styles.projDetails} target="_blank" rel="noopener noreferrer">View Source</a>
                         </div>
                         <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>

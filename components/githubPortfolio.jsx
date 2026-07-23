@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { getGithubViewState } from '../lib/github-portfolio';
 import styles from '../styles/githubPortfolio.module.css';
 
@@ -10,76 +10,31 @@ const CONTRIBUTION_LEVELS = {
   FOURTH_QUARTILE: 4,
 };
 
-function formatDate(value) {
+function formatDate(value, options = {}) {
   if (!value) return '';
   return new Intl.DateTimeFormat('en', {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
+    ...options,
   }).format(new Date(value));
 }
 
-function ProjectCard({ project }) {
-  return (
-    <article className={styles.projectCard}>
-      <div className={styles.cardHeading}>
-        <div>
-          <span className={styles.eyebrow}>
-            {project.featured ? 'Pinned repository' : 'Featured repository'}
-          </span>
-          <h3>
-            <a href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">
-              {project.name}
-            </a>
-          </h3>
-        </div>
-        <span className={styles.githubMark} aria-hidden="true">⌘</span>
-      </div>
+function contributionTrend(days) {
+  const totals = days.reduce((months, day) => {
+    const month = day.date.slice(0, 7);
+    months.set(month, (months.get(month) || 0) + day.count);
+    return months;
+  }, new Map());
 
-      <p className={styles.description}>
-        {project.description || 'Explore the source, history, and implementation on GitHub.'}
-      </p>
-
-      {project.languages.length > 0 && (
-        <div className={styles.languageBar} aria-label="Repository language breakdown">
-          {project.languages.map((language) => (
-            <span
-              key={language.name}
-              style={{
-                width: `${language.percent}%`,
-                backgroundColor: language.color || 'rgb(137, 135, 236)',
-              }}
-              title={`${language.name}: ${language.percent}%`}
-            />
-          ))}
-        </div>
-      )}
-
-      <div className={styles.meta}>
-        {project.primaryLanguage && <span>{project.primaryLanguage}</span>}
-        <span aria-label={`${project.stars} stars`}>★ {project.stars}</span>
-        <span aria-label={`${project.forks} forks`}>⑂ {project.forks}</span>
-        <span>Updated {formatDate(project.updatedAt)}</span>
-      </div>
-
-      {project.topics.length > 0 && (
-        <ul className={styles.topics} aria-label="Repository topics">
-          {project.topics.map((topic) => <li key={topic}>{topic}</li>)}
-        </ul>
-      )}
-
-      <div className={styles.links}>
-        <a href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">
-          View repository →
-        </a>
-        {project.homepageUrl && (
-          <a href={project.homepageUrl} target="_blank" rel="noopener noreferrer">
-            Live demo ↗
-          </a>
-        )}
-      </div>
-    </article>
-  );
+  return [...totals.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .slice(-12)
+    .map(([month, count]) => ({
+      month,
+      count,
+      label: formatDate(`${month}-02T12:00:00Z`, { month: 'short', year: undefined }),
+    }));
 }
 
 function ContributionCalendar({ contributions }) {
@@ -87,21 +42,23 @@ function ContributionCalendar({ contributions }) {
     () => contributions.days.filter((day) => day.count > 0).length,
     [contributions.days],
   );
+  const trend = useMemo(() => contributionTrend(contributions.days), [contributions.days]);
+  const maxMonth = Math.max(...trend.map((month) => month.count), 1);
 
   if (!contributions.days.length) {
-    return (
-      <div className={styles.emptyCalendar}>
-        Contribution history is temporarily unavailable.
-      </div>
-    );
+    return <div className={styles.emptyCalendar}>Contribution history is temporarily unavailable.</div>;
   }
 
   return (
-    <figure className={styles.contributionPanel}>
-      <figcaption>
-        <strong>{contributions.total.toLocaleString()} contributions</strong>
-        <span>{activeDays} active days in the last year</span>
-      </figcaption>
+    <section className={styles.contributionPanel} aria-labelledby="contribution-heading">
+      <div className={styles.panelHeading}>
+        <div>
+          <span className={styles.eyebrow}>Contribution history</span>
+          <h3 id="contribution-heading">{contributions.total.toLocaleString()} contributions</h3>
+        </div>
+        <span>{activeDays} active days</span>
+      </div>
+
       <div className={styles.calendarScroller}>
         <div
           className={styles.calendar}
@@ -121,6 +78,7 @@ function ContributionCalendar({ contributions }) {
           })}
         </div>
       </div>
+
       <div className={styles.legend} aria-hidden="true">
         <span>Less</span>
         {[0, 1, 2, 3, 4].map((level) => (
@@ -128,56 +86,111 @@ function ContributionCalendar({ contributions }) {
         ))}
         <span>More</span>
       </div>
-    </figure>
+
+      <div className={styles.trendHeading}>
+        <strong>12-month trend</strong>
+        <span>All public GitHub contributions</span>
+      </div>
+      <div
+        className={styles.trendChart}
+        role="img"
+        aria-label={`Monthly contribution trend: ${trend.map((month) => `${month.label} ${month.count}`).join(', ')}`}
+      >
+        {trend.map((month) => (
+          <div className={styles.trendMonth} key={month.month}>
+            <div className={styles.trendTrack}>
+              <i
+                style={{ height: `${Math.max((month.count / maxMonth) * 100, month.count ? 5 : 0)}%` }}
+                title={`${month.count} contributions in ${month.label}`}
+              />
+            </div>
+            <span>{month.label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function PopularProjects({ projects }) {
+  if (!projects.length) return null;
+
+  return (
+    <section className={styles.popularPanel} aria-labelledby="popular-heading">
+      <div className={styles.panelHeading}>
+        <div>
+          <span className={styles.eyebrow}>Beyond the case studies</span>
+          <h3 id="popular-heading">Popular on GitHub</h3>
+        </div>
+      </div>
+      <ol className={styles.popularList}>
+        {projects.map((project, index) => (
+          <li key={project.name}>
+            <span className={styles.rank}>{String(index + 1).padStart(2, '0')}</span>
+            <div>
+              <a href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">
+                {project.name}
+              </a>
+              <p>{project.description || 'Public source repository'}</p>
+              <div className={styles.repoMeta}>
+                {project.primaryLanguage && <span>{project.primaryLanguage}</span>}
+                <span aria-label={`${project.stars} stars`}>★ {project.stars}</span>
+                <span aria-label={`${project.forks} forks`}>⑂ {project.forks}</span>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
+function RecentActivity({ activity, profileUrl }) {
+  if (!activity.length) return null;
+
+  return (
+    <section className={styles.activityPanel} aria-labelledby="activity-heading">
+      <div className={styles.panelHeading}>
+        <div>
+          <span className={styles.eyebrow}>Commit history</span>
+          <h3 id="activity-heading">Recent development</h3>
+        </div>
+        <a href={profileUrl} target="_blank" rel="noopener noreferrer">View profile →</a>
+      </div>
+      <ol className={styles.activityList}>
+        {activity.slice(0, 6).map((commit) => (
+          <li key={`${commit.repository}-${commit.sha}`}>
+            <a href={commit.url} target="_blank" rel="noopener noreferrer">
+              <span>{commit.message}</span>
+              <small>{commit.repository} · {formatDate(commit.committedAt)}</small>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </section>
   );
 }
 
 function LoadingState() {
   return (
     <div className={styles.loadingGrid} role="status" aria-live="polite">
-      <span className={styles.srOnly}>Loading GitHub projects and activity…</span>
+      <span className={styles.srOnly}>Loading GitHub activity…</span>
       {[0, 1, 2].map((item) => <div className={styles.loadingCard} key={item} />)}
     </div>
   );
 }
 
-export default function GithubPortfolio() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    async function loadPortfolio() {
-      try {
-        const response = await fetch('/.netlify/functions/github-portfolio', {
-          signal: controller.signal,
-          headers: { Accept: 'application/json' },
-        });
-        if (!response.ok) throw new Error('GitHub portfolio endpoint unavailable');
-        const payload = await response.json();
-        setData(payload);
-      } catch (requestError) {
-        if (requestError.name !== 'AbortError') setError(requestError);
-      } finally {
-        if (!controller.signal.aborted) setLoading(false);
-      }
-    }
-
-    loadPortfolio();
-    return () => controller.abort();
-  }, []);
-
+export default function GithubPortfolio({ github }) {
+  const { data, loading, error } = github;
   const viewState = getGithubViewState({ loading, error, data });
 
   return (
     <section className={styles.section} aria-labelledby="github-heading">
       <header className={styles.header}>
         <span className={styles.kicker}>Open source &amp; recent work</span>
-        <h2 id="github-heading">From my GitHub</h2>
+        <h2 id="github-heading">GitHub activity</h2>
         <p>
-          A live look at the repositories I&apos;m highlighting and the work happening behind them.
+          Live development history and the public projects finding an audience beyond my featured work.
         </p>
       </header>
 
@@ -194,47 +207,30 @@ export default function GithubPortfolio() {
 
       {viewState === 'empty' && (
         <div className={styles.message} role="status">
-          <p>No featured public repositories are configured yet.</p>
+          <p>No public GitHub activity is available yet.</p>
           <a href={data.profile.url} target="_blank" rel="noopener noreferrer">
-            Browse all public repositories →
+            Browse GitHub →
           </a>
         </div>
       )}
 
       {viewState === 'ready' && (
         <>
-          <div className={styles.projectGrid}>
-            {data.projects.map((project) => (
-              <ProjectCard project={project} key={project.name} />
-            ))}
+          <div className={styles.statGrid}>
+            <div><strong>{data.profile.publicRepositories}</strong><span>Public repositories</span></div>
+            <div><strong>{data.profile.totalStars}</strong><span>Stars received</span></div>
+            <div><strong>{data.profile.totalForks}</strong><span>Repository forks</span></div>
+            <div>
+              <strong>{data.profile.topLanguages?.[0]?.name || '—'}</strong>
+              <span>Most-used language</span>
+            </div>
           </div>
 
-          <div className={styles.activityGrid}>
-            <ContributionCalendar contributions={data.contributions} />
+          <ContributionCalendar contributions={data.contributions} />
 
-            {data.recentActivity.length > 0 && (
-              <aside className={styles.activityPanel} aria-labelledby="activity-heading">
-                <div className={styles.activityHeading}>
-                  <div>
-                    <span className={styles.eyebrow}>Latest commits</span>
-                    <h3 id="activity-heading">Recent development</h3>
-                  </div>
-                  <a href={data.profile.url} target="_blank" rel="noopener noreferrer">
-                    @{data.profile.username}
-                  </a>
-                </div>
-                <ol className={styles.activityList}>
-                  {data.recentActivity.slice(0, 4).map((commit) => (
-                    <li key={`${commit.repository}-${commit.sha}`}>
-                      <a href={commit.url} target="_blank" rel="noopener noreferrer">
-                        <span>{commit.message}</span>
-                        <small>{commit.repository} · {formatDate(commit.committedAt)}</small>
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              </aside>
-            )}
+          <div className={styles.detailGrid}>
+            <PopularProjects projects={data.popularProjects || []} />
+            <RecentActivity activity={data.recentActivity || []} profileUrl={data.profile.url} />
           </div>
         </>
       )}

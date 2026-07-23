@@ -9,9 +9,11 @@ import HorzontalFeed from '../components/horzontalFeed.jsx';
 import Timeline from '../components/timeline.jsx';
 import Contact from '../components/contact.jsx';
 import Footer from '../components/footer.jsx';
+import useGithubPortfolio from '../lib/use-github-portfolio.js';
 
 
 export default function Home() {
+  const github = useGithubPortfolio();
 
   return (
     <div className='page-container'>
@@ -24,8 +26,8 @@ export default function Home() {
       <Navbar />
       <About />
       <HorzontalFeed />
-      <Projects/>
-      <GithubPortfolio />
+      <Projects github={github} />
+      <GithubPortfolio github={github} />
       <Timeline />
       <Contact />
       <Footer />

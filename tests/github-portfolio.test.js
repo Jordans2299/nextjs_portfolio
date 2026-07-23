@@ -62,12 +62,13 @@ function graphRepository(overrides = {}) {
   };
 }
 
-test('prefers pinned public repositories and merges REST details with GraphQL activity', () => {
+test('keeps configured showcase order while merging pins and recent GraphQL activity', () => {
   const response = buildPortfolioResponse({
     username: 'Jordans2299',
     restRepositories: [restRepository()],
     graphUser: {
       pinnedItems: { nodes: [graphRepository()] },
+      repositories: { nodes: [graphRepository()] },
       contributionsCollection: {
         startedAt: '2025-07-20T00:00:00Z',
         endedAt: '2026-07-20T23:59:59Z',
@@ -87,10 +88,12 @@ test('prefers pinned public repositories and merges REST details with GraphQL ac
         },
       },
     },
+    fallbackRepositories: 'public-project',
     generatedAt: '2026-07-23T12:00:00Z',
   });
 
-  assert.equal(response.meta.projectSource, 'pinned');
+  assert.equal(response.meta.projectSource, 'configured');
+  assert.deepEqual(response.meta.pinnedRepositories, ['public-project']);
   assert.equal(response.projects.length, 1);
   assert.equal(response.projects[0].stars, 12);
   assert.equal(response.projects[0].languages[0].percent, 75);
@@ -117,7 +120,11 @@ test('never exposes private repositories returned by either API', () => {
           graphRepository({ name: 'private-project', isPrivate: true }),
         ],
       },
+      repositories: {
+        nodes: [graphRepository({ name: 'private-project', isPrivate: true })],
+      },
     },
+    fallbackRepositories: 'public-project,private-project',
   });
 
   assert.deepEqual(response.projects.map((project) => project.name), ['public-project']);
@@ -140,6 +147,27 @@ test('uses the explicit repository list when no public pins are available', () =
   assert.equal(response.projects.every((project) => project.featured === false), true);
 });
 
+test('ranks popular public repositories separately from showcased projects', () => {
+  const response = buildPortfolioResponse({
+    username: 'Jordans2299',
+    restRepositories: [
+      restRepository({ name: 'showcase', stargazers_count: 100 }),
+      restRepository({ name: 'viral-one', stargazers_count: 20, forks_count: 5 }),
+      restRepository({ name: 'viral-two', stargazers_count: 8, forks_count: 40 }),
+    ],
+    graphUser: { pinnedItems: { nodes: [] }, repositories: { nodes: [] } },
+    fallbackRepositories: 'showcase',
+  });
+
+  assert.deepEqual(
+    response.popularProjects.map((project) => project.name),
+    ['viral-one', 'viral-two'],
+  );
+  assert.equal(response.profile.publicRepositories, 3);
+  assert.equal(response.profile.totalStars, 128);
+  assert.equal(response.profile.totalForks, 48);
+});
+
 test('parses configured repository names and strips owner prefixes', () => {
   assert.deepEqual(
     configuredRepositories('Jordans2299/one, two, Jordans2299/three'),
@@ -153,6 +181,10 @@ test('maps frontend loading, error, empty, and ready states', () => {
   assert.equal(getGithubViewState({ loading: false, data: { projects: [] } }), 'empty');
   assert.equal(
     getGithubViewState({ loading: false, data: { projects: [{ name: 'one' }] } }),
+    'ready',
+  );
+  assert.equal(
+    getGithubViewState({ loading: false, data: { projects: [], popularProjects: [{ name: 'viral' }] } }),
     'ready',
   );
 });
@@ -176,8 +208,10 @@ test('serverless endpoint fails safely when the token is not configured', async 
 
 test('serverless endpoint applies one-hour durable CDN caching to successful responses', async () => {
   const originalToken = process.env.GITHUB_TOKEN;
+  const originalRepositories = process.env.GITHUB_REPOSITORIES;
   const originalFetch = global.fetch;
   process.env.GITHUB_TOKEN = 'test-token-never-sent-over-network';
+  process.env.GITHUB_REPOSITORIES = 'public-project';
   let requestCount = 0;
 
   global.fetch = async (url) => {
@@ -187,6 +221,7 @@ test('serverless endpoint applies one-hour durable CDN caching to successful res
         data: {
           user: {
             pinnedItems: { nodes: [graphRepository()] },
+            repositories: { nodes: [graphRepository()] },
             contributionsCollection: {
               contributionCalendar: { totalContributions: 0, weeks: [] },
             },
@@ -214,5 +249,7 @@ test('serverless endpoint applies one-hour durable CDN caching to successful res
     global.fetch = originalFetch;
     if (originalToken === undefined) delete process.env.GITHUB_TOKEN;
     else process.env.GITHUB_TOKEN = originalToken;
+    if (originalRepositories === undefined) delete process.env.GITHUB_REPOSITORIES;
+    else process.env.GITHUB_REPOSITORIES = originalRepositories;
   }
 });

@@ -107,6 +107,16 @@ color: rgb(137, 135, 236);
     font-style: italic;
     font-size: small !important;
 }
+.githubStats {
+    display: flex;
+    width: 80%;
+    margin: 1.4rem auto 0;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.4rem;
+    color: rgba(232, 232, 240, 0.58);
+    font-size: 1.15rem;
+    text-align: left;
+}
 .featured {
     flex: 0 0 calc(100% - 10rem);
     max-width: calc(100% - 10rem);
