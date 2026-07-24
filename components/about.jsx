@@ -38,9 +38,9 @@ export default function About() {
                 <HorizontalFeed />
 
                 <ul className={`${styles.bio} ${styles.animate_from_left} ${styles.animate_to_center}`} id="bio">
-                    <li><span className={styles.bioPrefix}>$</span> 3.5 years full-stack &amp; iOS @ AT&amp;T &mdash; own features for a 10,000+ daily-user field app, ~$5M/yr in cost savings</li>
-                    <li><span className={styles.bioPrefix}>$</span> Shipped Arbiter, a privacy-first on-device AI assistant for iOS &mdash; 1,000+ downloads in under 2 months</li>
-                    <li><span className={styles.bioPrefix}>$</span> Focused on building fast, secure software that makes a real impact</li>
+                    <li><span className={styles.bioPrefix}>$</span> I&apos;m Jordan, a software engineer and founder focused on building thoughtful, useful products from the ground up.</li>
+                    <li><span className={styles.bioPrefix}>$</span> I spent 4 years at AT&amp;T working across iOS and full-stack development before going full-time on Arbiter, my privacy-first local AI app for iOS and macOS.</li>
+                    <li><span className={styles.bioPrefix}>$</span> I enjoy working across engineering, product, and design, especially on software that feels fast, intuitive, and genuinely useful.</li>
                 </ul>
             </div>
         </section>

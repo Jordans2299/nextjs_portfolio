@@ -63,9 +63,17 @@ const Timeline = () => {
                 </div>
                 <div className={`${styles.container} ${styles.right}`}>
                     <div className={styles.content}>
-                        <h2>July 2022 - Present</h2>
+                        <h2>July 2022 - May 2026</h2>
                         <p>AT&T Senior Software Engineer</p>
-                        <p className={styles.description}>Own and ship production features for an iOS app used by 10,000+ field technicians daily, with contributions estimated to generate $5M+ in annual cost savings.</p>
+                        <p className={styles.description}>Owned and shipped production features for an iOS app used by 10,000+ field technicians daily, with contributions estimated to generate $5M+ in annual cost savings.</p>
+                    </div>
+                </div>
+
+                <div className={`${styles.container} ${styles.left}`}>
+                    <div className={styles.content}>
+                        <h2>June 2025 - Present</h2>
+                        <p>Arbiter - Founder & Product Engineer</p>
+                        <p className={styles.description}>Founded and built Arbiter, a privacy-first AI app that runs quantized LLMs locally on iOS and macOS, reaching 1,000+ downloads within three months while owning product strategy, design, and growth.</p>
                     </div>
                 </div>
             </div>
