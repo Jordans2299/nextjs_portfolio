@@ -8,7 +8,7 @@ export default function NavBar() {
 
     return (
         <nav className={styles.stickyNav} id="stickyNav">
-            <a href="#about" className={styles.brand}>JS</a>
+            <a href="#about" className={styles.brand}>JS<span className={styles.cursor}>_</span></a>
             <div className={styles.hamburger} onClick={toggleMenu}>
                 <span className={styles.bar}></span>
                 <span className={styles.bar}></span>
@@ -28,6 +28,7 @@ export default function NavBar() {
                     <a href="#contact" className={styles.navLink} onClick={() => setOpen(false)}>Contact</a>
                 </li>
             </ul>
+            <a href="/assets/Resume_2026.pdf" className={styles.navCta} target="_blank" rel="noopener noreferrer">Resume</a>
         </nav>
     )
 }

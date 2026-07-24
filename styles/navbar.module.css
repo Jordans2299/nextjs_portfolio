@@ -8,20 +8,50 @@
     justify-content: space-between;
     padding: 0 5rem;
     height: 5.5rem;
-    background: rgba(6, 6, 12, 0.88);
+    background: rgba(6, 6, 12, 0.97);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .brand {
+    font-family: var(--mr-mono, monospace);
     font-size: 1.5rem;
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgb(137, 135, 236);
+    color: rgb(255, 45, 45);
     text-decoration: none;
     flex-shrink: 0;
+}
+
+.cursor {
+    animation: blink-cursor 1.1s steps(1) infinite;
+}
+
+@keyframes blink-cursor {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+.navCta {
+    flex-shrink: 0;
+    background-color: rgb(255, 45, 45);
+    color: #0a0a0a;
+    font-family: var(--mr-mono, monospace);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.7rem 1.8rem;
+    border-radius: 10rem;
+    transition: background-color 220ms ease, box-shadow 220ms ease;
+}
+
+.navCta:hover {
+    background-color: #ff5c5c;
+    box-shadow: 0 0 18px rgba(255, 45, 45, 0.5);
 }
 
 .navList {
@@ -34,6 +64,7 @@
 }
 
 .navLink {
+    font-family: var(--mr-mono, monospace);
     font-size: 1.15rem;
     font-weight: 400;
     letter-spacing: 0.16em;
@@ -44,7 +75,7 @@
 }
 
 .navLink:hover {
-    color: rgb(137, 135, 236);
+    color: rgb(255, 45, 45);
 }
 
 .hamburger {
@@ -75,6 +106,9 @@
         align-items: center;
     }
     .brand {
+        display: none;
+    }
+    .navCta {
         display: none;
     }
     .navList {

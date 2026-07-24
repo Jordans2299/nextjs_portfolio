@@ -1,276 +1,226 @@
-.projectSection{
+.projectSection {
     margin-top: 1rem;
-    /* background-color: rgba(255,255,255,0.05); */
     padding: 2rem 0;
+    overflow: hidden;
 }
-.projects{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
-.projCard{
-    width: 35rem;
+.projHeader {
     text-align: center;
-    padding: 2rem;
-    position: relative;
-    border-radius: 1rem;
-    background-color: rgba(255,255,255,0.05);
-    margin: 1rem 2rem;
-    min-height: 45rem;
-    height: auto;
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
-    color: #e0e0e0;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease, border-color 0.3s ease;
+    margin-bottom: 2rem;
 }
-
-.projItem{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.projDescription{
-    flex-grow: 1;
-}
-.show{
-    opacity: 1;
-    transform: translateY(0);
-}
-.projCard:hover{
-    cursor: pointer;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
-    transform: translateY(-5px);
-    border-color: rgba(137, 135, 236, 0.35);
-}
-.projHeader{
-    text-align: center;
-    margin-bottom: 3rem;
-}
-.projHeader h1{
+.projHeader h1 {
     font-size: 4rem;
     font-weight: 500;
-    color: rgb(137, 135, 236);
+    color: rgb(255, 45, 45);
 }
-.projHeader h6{
+.projHeader h6 {
     font-size: 1.5rem;
     font-weight: 200;
 }
-.projImg{
-    width: 10rem;
-    height: 10rem;
-    margin: auto;
+
+/* ---- gallery controls ---- */
+.galleryControls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
 }
-.projDescription p{
-    text-align: left;
-    width: 80%;
-    margin: 0 auto;
-    /* text-indent: 2rem; */
-    font-size: 1.5rem;
+.navArrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 45, 45, 0.35);
+    background: transparent;
+    color: rgb(255, 45, 45);
+    font-size: 2.2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 200ms ease, border-color 200ms ease, opacity 200ms ease;
 }
-.projDescription h6{
-    font-size: 1.5rem;
-    font-weight: 300;
-    /* color: rgb(202, 202, 202); */
+.navArrow:hover:not(:disabled) {
+    background-color: rgba(255, 45, 45, 0.1);
+    border-color: rgb(255, 45, 45);
 }
-.projTitle{
-    font-size: 3rem;
-    font-weight: 500;
-    margin-top: .5rem;
-    margin-bottom: 3rem;
+.navArrow:disabled {
+    opacity: 0.25;
+    cursor: default;
 }
-.projDetails{
+.galleryCounter {
+    font-family: var(--mr-mono, monospace);
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+    color: rgba(232, 232, 240, 0.55);
+    min-width: 7rem;
+    text-align: center;
+}
+
+/* ---- horizontal 3D gallery track ---- */
+.galleryTrack {
+    display: flex;
+    gap: 3rem;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    padding: 4rem calc(50% - 17rem) 5rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.galleryTrack::-webkit-scrollbar {
+    display: none;
+}
+
+.projCard {
+    flex: 0 0 34rem;
+    width: 34rem;
+    scroll-snap-align: center;
     display: block;
-    margin-top: 2rem;
-    color: rgb(137, 135, 236);
-    font-size: 1.7rem;
+    text-align: left;
+    text-decoration: none;
+    color: #e0e0e0;
+    padding: 2.5rem;
+    position: relative;
+    border-radius: 1.2rem;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    transition: transform 60ms ease-out, opacity 120ms ease-out, border-color 200ms ease, box-shadow 200ms ease;
+    will-change: transform, opacity;
+    cursor: pointer;
 }
-.projDetails:hover{
-color: rgb(137, 135, 236);
+
+.projCard:hover {
+    border-color: rgba(255, 45, 45, 0.45);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 45, 45, 0.12);
 }
-.projStatus{
-    font-size: 1.2rem;
-    margin-top: .5rem;
-    text-align: right;
-    color: white;
+
+.projImg {
+    width: 100%;
+    height: 16rem;
+    margin: 0 0 1.8rem;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.25);
 }
-.completed{
-    color: #4ade80;
+
+.projDescription h6 {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: rgba(232, 232, 240, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
-.inProgress{
-    color: rgb(196, 183, 66);
+.projTitle {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-top: 0.4rem;
+    margin-bottom: 0.8rem;
+    color: #f2f2f5;
 }
-.technologies{
-    margin-top: 1.5rem !important;
-    font-style: italic;
-    font-size: small !important;
+.metrics {
+    font-size: 1.15rem !important;
+    color: rgba(255, 45, 45, 0.8) !important;
+    letter-spacing: 0.02em;
+    margin-bottom: 1rem !important;
+}
+.cardDescription {
+    font-size: 1.35rem;
+    line-height: 1.6;
+    color: rgba(232, 232, 240, 0.7);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 1.4rem;
+}
+.techRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+}
+.techPill {
+    font-size: 1.05rem;
+    padding: 0.3rem 1rem;
+    border-radius: 10rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(232, 232, 240, 0.65);
+    white-space: nowrap;
 }
 .githubStats {
     display: flex;
-    width: 80%;
-    margin: 1.4rem auto 0;
     flex-wrap: wrap;
-    gap: 0.8rem 1.4rem;
-    color: rgba(232, 232, 240, 0.58);
-    font-size: 1.15rem;
-    text-align: left;
+    gap: 0.6rem 1.2rem;
+    color: rgba(232, 232, 240, 0.5);
+    font-size: 1.05rem;
 }
-.featured {
-    flex: 0 0 calc(100% - 10rem);
-    max-width: calc(100% - 10rem);
-    min-height: unset;
-    text-align: left;
-    border-color: rgba(137, 135, 236, 0.4);
-    box-shadow: 0 0 30px rgba(137, 135, 236, 0.15), 1px 2px 4px rgba(0, 0, 0, 0.4);
-    background: linear-gradient(135deg, rgba(109, 93, 252, 0.07), rgba(55, 213, 214, 0.03));
-}
-.featured .projItem {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 4rem;
-}
-.featured .projImg {
-    width: 22rem;
-    height: 22rem;
-    flex-shrink: 0;
-    margin: 0;
-}
-.featured .projDescription p {
-    width: 100%;
-    text-align: left;
-}
-.featuredLabel {
-    font-size: 1.1rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: rgb(137, 135, 236);
-    margin-bottom: 1.5rem;
-}
-.metrics {
-    font-size: 1.25rem !important;
-    color: rgba(137, 135, 236, 0.8) !important;
-    letter-spacing: 0.04em;
-    margin-top: 0.5rem !important;
-    margin-bottom: 1.5rem !important;
-    font-style: normal !important;
-    width: 100% !important;
-}
-.featureList {
-    text-align: left;
-    padding-left: 2rem;
-    margin: 1.2rem 0;
-}
-.featureList li {
-    font-size: 1.35rem;
-    color: rgba(232, 232, 240, 0.7);
-    margin-bottom: 0.6rem;
-    line-height: 1.5;
-}
-.projLinks {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-}
-.titleRow {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.5rem;
-}
-.earlyAccessBadge {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
+.viewDetails {
     display: inline-block;
-    padding: 0.4rem 1.2rem;
-    background-color: rgba(196, 183, 66, 0.12);
-    border: 1px solid rgba(196, 183, 66, 0.35);
-    border-radius: 10rem;
-    font-size: 1.1rem;
+    margin-top: 1.6rem;
+    color: rgb(255, 45, 45);
+    font-size: 1.2rem;
     font-weight: 500;
-    color: rgb(196, 183, 66);
-    white-space: nowrap;
-    letter-spacing: 0.04em;
-}
-.appStoreBtn {
-    display: inline-flex;
-    align-items: center;
-    padding: 1rem 2.2rem;
-    background-color: rgba(232, 232, 240, 0.9);
-    color: #0a0a0a;
-    border-radius: 0.8rem;
-    font-size: 1.4rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background-color 200ms ease;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-}
-.appStoreBtn:hover {
-    background-color: #ffffff;
-}
-.websiteLink {
-    display: inline-flex;
-    align-items: center;
-    padding: 1rem 2.2rem;
-    border: 1px solid rgba(137, 135, 236, 0.4);
-    border-radius: 0.8rem;
-    font-size: 1.4rem;
-    color: rgb(137, 135, 236);
-    text-decoration: none;
-    transition: border-color 200ms ease, background-color 200ms ease;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-}
-.websiteLink:hover {
-    border-color: rgb(137, 135, 236);
-    background-color: rgba(137, 135, 236, 0.08);
 }
 
-@media (max-width:800px){
-    .projCard{
-        width: 85%;
-        margin: 1rem auto;
-    }
-    .featured {
-        flex: unset;
-        width: 90%;
-        max-width: unset;
-        text-align: center;
-    }
-    .featured .projItem {
-        flex-direction: column;
+/* ---- status badges ---- */
+.statusBadge {
+    position: absolute;
+    top: -1rem;
+    right: 1.6rem;
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    border-radius: 10rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+    backdrop-filter: blur(6px);
+}
+.statusEarlyAccess {
+    background-color: rgba(196, 183, 66, 0.12);
+    border: 1px solid rgba(196, 183, 66, 0.35);
+    color: rgb(196, 183, 66);
+}
+.statusCompleted {
+    background-color: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    color: rgba(110, 220, 150, 0.85);
+}
+.statusInProgress {
+    background-color: rgba(96, 165, 250, 0.1);
+    border: 1px solid rgba(96, 165, 250, 0.32);
+    color: rgba(120, 180, 250, 0.9);
+}
+
+@media (max-width: 900px) {
+    .galleryTrack {
+        padding: 3rem calc(50% - 14rem) 4rem;
         gap: 2rem;
     }
-    .featured .projImg {
-        width: 14rem;
-        height: 14rem;
-        margin: auto;
-    }
-    .featured .projDescription p {
-        text-align: left;
-    }
-    .titleRow {
-        justify-content: center;
-    }
-    .projLinks {
-        justify-content: center;
-    }
-    .appStoreBtn, .websiteLink {
-        font-size: 1.6rem;
-        padding: 1.2rem 2.5rem;
+    .projCard {
+        flex-basis: 28rem;
+        width: 28rem;
+        padding: 2rem;
     }
 }
-@media (max-width:480px){
-    .projCard{
-        width: 92%;
+
+@media (max-width: 600px) {
+    .galleryTrack {
+        padding: 2.5rem calc(50% - 12rem) 3rem;
     }
-    .featured {
-        width: 96%;
+    .projCard {
+        flex-basis: 24rem;
+        width: 24rem;
+        padding: 1.8rem;
+    }
+    .navArrow {
+        width: 3.4rem;
+        height: 3.4rem;
+        font-size: 1.8rem;
     }
 }

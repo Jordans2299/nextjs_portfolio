@@ -1,15 +1,8 @@
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import Link from 'next/link';
 import styles from '../styles/projects.module.css';
-
-import forumImg from "../public/images/intramuralcs.png";
-import moneyImg from "../public/images/money_pool.png";
-import doseImg from "../public/images/daily_dose.png";
-import smileImg from "../public/images/smile.png";
-import mattImg from '../public/images/matt_levine_bot.png';
-import quizImg from "../public/images/quiz.png";
-import odinImg from "../public/images/odin_office.png";
-import arbiterImg from "../public/images/arbiter_telescope_purple.png";
+import { projects } from '../lib/projects-data';
 
 function GithubStats({ repository }) {
     if (!repository) return null;
@@ -28,7 +21,26 @@ function GithubStats({ repository }) {
     );
 }
 
+const STATUS_CLASS = {
+    'early-access': styles.statusEarlyAccess,
+    completed: styles.statusCompleted,
+    'in-progress': styles.statusInProgress,
+};
+
+const FOCAL = 0.5;
+const N = projects.length;
+// Render three copies back to back so the carousel can scroll infinitely in
+// either direction; the middle copy is the "home" range we silently snap
+// back into once the user scrolls/clicks into a cloned copy.
+const LOOPED = [...projects, ...projects, ...projects];
+
 export default function Projects({ github }) {
+    const trackRef = useRef(null);
+    const cardRefs = useRef([]);
+    const activeRenderedIndexRef = useRef(N);
+    const settleTimerRef = useRef(null);
+    const [activeIndex, setActiveIndex] = useState(0);
+
     const repositoryByName = new Map(
         (github?.data?.projects || []).map((repository) => [
             repository.name.toLowerCase(),
@@ -36,197 +48,176 @@ export default function Projects({ github }) {
         ]),
     );
 
-    useEffect(() => {
-        const cards = document.querySelectorAll(`.${styles.projCard}`);
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add(styles.show);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        cards.forEach((card) => observer.observe(card));
-        return () => observer.disconnect();
+    const scrollToRenderedIndex = useCallback((renderedIndex, behavior = 'smooth') => {
+        const card = cardRefs.current[renderedIndex];
+        const track = trackRef.current;
+        if (!card || !track) return;
+        const cardRect = card.getBoundingClientRect();
+        const trackRect = track.getBoundingClientRect();
+        const target = track.scrollLeft + (cardRect.left - trackRect.left) - (track.clientWidth * FOCAL - card.clientWidth / 2);
+        track.scrollTo({ left: target, behavior });
     }, []);
+
+    const updateTilt = useCallback(() => {
+        const track = trackRef.current;
+        if (!track) return;
+        const trackRect = track.getBoundingClientRect();
+        const centerX = trackRect.left + trackRect.width * FOCAL;
+        let closestIndex = activeRenderedIndexRef.current;
+        let closestDist = Infinity;
+
+        cardRefs.current.forEach((card, i) => {
+            if (!card) return;
+            const rect = card.getBoundingClientRect();
+            const cardCenter = rect.left + rect.width / 2;
+            const dist = cardCenter - centerX;
+            const normalized = Math.max(-1, Math.min(1, dist / (trackRect.width / 2)));
+            const rotateY = normalized * -26;
+            const scale = 1 - Math.min(Math.abs(normalized), 1) * 0.16;
+            const opacity = 1 - Math.min(Math.abs(normalized), 1) * 0.6;
+            card.style.transform = `perspective(1400px) rotateY(${rotateY}deg) scale(${scale})`;
+            card.style.opacity = String(opacity);
+            card.style.zIndex = String(400 - Math.min(400, Math.round(Math.abs(dist))));
+
+            if (Math.abs(dist) < closestDist) {
+                closestDist = Math.abs(dist);
+                closestIndex = i;
+            }
+        });
+
+        activeRenderedIndexRef.current = closestIndex;
+        setActiveIndex(((closestIndex % N) + N) % N);
+    }, []);
+
+    // After scrolling settles, silently snap back into the middle ("home")
+    // copy if the user has drifted into a cloned copy — imperceptible since
+    // clones are visually identical to the home cards.
+    const scheduleSettleCheck = useCallback(() => {
+        clearTimeout(settleTimerRef.current);
+        settleTimerRef.current = setTimeout(() => {
+            const idx = activeRenderedIndexRef.current;
+            if (idx < N) {
+                activeRenderedIndexRef.current = idx + N;
+                scrollToRenderedIndex(idx + N, 'auto');
+            } else if (idx >= 2 * N) {
+                activeRenderedIndexRef.current = idx - N;
+                scrollToRenderedIndex(idx - N, 'auto');
+            }
+        }, 150);
+    }, [scrollToRenderedIndex]);
+
+    useEffect(() => {
+        // Land on the first card of the home copy, centered, with no animation.
+        scrollToRenderedIndex(N, 'auto');
+        updateTilt();
+        const track = trackRef.current;
+        if (!track) return undefined;
+        let throttled = false;
+        let pendingTimer;
+        const onScroll = () => {
+            if (!throttled) {
+                throttled = true;
+                updateTilt();
+                pendingTimer = setTimeout(() => { throttled = false; }, 32);
+            }
+            scheduleSettleCheck();
+        };
+        track.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        return () => {
+            track.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onScroll);
+            clearTimeout(pendingTimer);
+            clearTimeout(settleTimerRef.current);
+        };
+    }, [updateTilt, scrollToRenderedIndex, scheduleSettleCheck]);
+
+    // Button clicks know exactly which card they're headed to, so update the
+    // active index optimistically instead of waiting on a scroll event —
+    // keeps the counter/UI correct even if the browser is slow (or, during
+    // an animated scroll, hasn't fired an intermediate scroll event yet).
+    const goTo = (nextRenderedIndex) => {
+        activeRenderedIndexRef.current = nextRenderedIndex;
+        setActiveIndex(((nextRenderedIndex % N) + N) % N);
+        scrollToRenderedIndex(nextRenderedIndex, 'smooth');
+        scheduleSettleCheck();
+    };
+    const goPrev = () => goTo(activeRenderedIndexRef.current - 1);
+    const goNext = () => goTo(activeRenderedIndexRef.current + 1);
+
+    const handleWheel = (e) => {
+        const track = trackRef.current;
+        if (!track) return;
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            e.preventDefault();
+            track.scrollLeft += e.deltaY;
+        }
+    };
 
     return (
         <div className={styles.projectSection} id="projects">
             <div className={styles.projHeader}>
                 <h1>Projects</h1>
-                <h6>View some of my recent work</h6>
+                <h6>Swipe through my recent work</h6>
             </div>
 
-            <div className={styles.projects} >
-                <div className={`${styles.projCard} ${styles.featured}`} id="arbiter-card">
-                    <div className={styles.featuredLabel}>Featured Project</div>
-                    <span className={styles.earlyAccessBadge}>Early Access</span>
-                    <div className={styles.projItem}>
+            <div className={styles.galleryControls}>
+                <button
+                    type="button"
+                    className={styles.navArrow}
+                    onClick={goPrev}
+                    aria-label="Previous project"
+                >
+                    ‹
+                </button>
+                <span className={styles.galleryCounter}>
+                    {String(activeIndex + 1).padStart(2, '0')} / {String(N).padStart(2, '0')}
+                </span>
+                <button
+                    type="button"
+                    className={styles.navArrow}
+                    onClick={goNext}
+                    aria-label="Next project"
+                >
+                    ›
+                </button>
+            </div>
+
+            <div className={styles.galleryTrack} ref={trackRef} onWheel={handleWheel}>
+                {LOOPED.map((project, i) => (
+                    <Link
+                        key={`${project.slug}-${i}`}
+                        href={`/projects/${project.slug}`}
+                        className={styles.projCard}
+                        ref={(el) => { cardRefs.current[i] = el; }}
+                    >
+                        <span className={`${styles.statusBadge} ${STATUS_CLASS[project.status] || ''}`}>
+                            {project.statusLabel}
+                        </span>
                         <div className={styles.projImg}>
-                            <Image src={arbiterImg} alt="Screens showcasing Arbiter, the on-device AI assistant" width={220} height={220} style={{ height: 'auto' }} />
+                            <Image
+                                src={project.image}
+                                alt={project.imageAlt}
+                                className={project.imageClassName ? styles[project.imageClassName] : undefined}
+                                style={{ height: 'auto', width: '100%' }}
+                            />
                         </div>
                         <div className={styles.projDescription}>
-                            <h6>iOS - Local LLM Assistant</h6>
-                            <div className={styles.titleRow}>
-                                <h1 className={styles.projTitle}>Arbiter</h1>
+                            <h6>{project.category}</h6>
+                            <h1 className={styles.projTitle}>{project.title}</h1>
+                            {project.metrics && <p className={styles.metrics}>{project.metrics}</p>}
+                            <p className={styles.cardDescription}>{project.description}</p>
+                            <div className={styles.techRow}>
+                                {project.tech.slice(0, 4).map((t) => (
+                                    <span key={t} className={styles.techPill}>{t}</span>
+                                ))}
                             </div>
-                            <p className={styles.metrics}>1,000+ downloads &nbsp;·&nbsp; Built solo in ~3 months &nbsp;·&nbsp; Live on the App Store</p>
-                            <p>
-                                Privacy-first offline AI assistant for iPhone. Every conversation stays fully on-device with no data ever leaving the phone. Swap between open-source models tailored to your workflow or needs.
-                            </p>
-                            <ul className={styles.featureList}>
-                                <li>Real-time web search to augment on-device generation</li>
-                                <li>Support for reasoning models, vision models, and file analysis</li>
-                                <li>Siri integration with background execution optimizations</li>
-                                <li>Runs quantized LLMs via MLX framework and a llama.cpp Swift wrapper</li>
-                            </ul>
-                            <p className={styles.technologies}>Swift, SwiftUI, Core ML, MLX, llama.cpp, Firebase</p>
-                            <div className={styles.projLinks}>
-                                <a href="https://apps.apple.com/us/app/arbiter-offline-private-ai/id6747954532" className={styles.appStoreBtn} target="_blank" rel="noopener noreferrer">↓ App Store</a>
-                                <a href="https://www.askarbiter.ai/" className={styles.websiteLink} target="_blank" rel="noopener noreferrer">askarbiter.ai →</a>
-                            </div>
+                            <GithubStats repository={repositoryByName.get(project.repoKey)} />
                         </div>
-                    </div>
-                </div>
-                <div className={styles.projCard}>
-                    <div className={styles.projItem}>
-                        <div className={styles.projImg}>
-                            <a href="https://getthedailydose.com" target="_blank" rel="noopener noreferrer">
-                                <Image src={doseImg} alt="Daily Dose AI newsletter app screenshot" style={{ height: 'auto' }} />
-                            </a>
-                        </div>
-                        <div className={styles.projDescription}>
-                            <h6>Web Development - AI Newsletter</h6>
-                            <a className={styles.profLink} href="http://getthedailydose.com" target="_blank" rel="noopener noreferrer">
-                                <h1 className={styles.projTitle}>Daily Dose</h1>
-                            </a>
-                            <p>
-                                Automated daily email newsletter that fetches articles from external APIs, summarizes them, and leverages OpenAI for a comprehensive and engaging result. The App runs on an AWS EC2 instance using Docker containers.
-                            </p>
-                            <p className={styles.technologies}>Python, Flask, Next.js, HTML, CSS, AWS EC2, Docker</p>
-                            <GithubStats repository={repositoryByName.get('daily_dose_backend')} />
-                            <a href="https://github.com/Jordans2299/daily_dose_backend" className={styles.projDetails} target="_blank" rel="noopener noreferrer">View Source</a>
-                        </div>
-                        <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
-                    </div>
-                </div>
-                <div className={styles.projCard}>
-                    <div className={styles.projItem}>
-                        <div className={styles.projImg}>
-                            <a href="http://forum.jordanstoneportfolio.com" target="_blank" rel="noopener noreferrer">
-                                <Image src={forumImg} alt="CS Forum website screenshot" style={{ height: 'auto' }} />
-                            </a>
-                        </div>
-                        <div className={styles.projDescription}>
-                            <h6>Web Development</h6>
-                            <a className={styles.projLink} href="http://forum.jordanstoneportfolio.com" target="_blank" rel="noopener noreferrer">
-                                <h1 className={styles.projTitle}>CS Forum</h1>
-                            </a>
-                            <p>
-                                Discover a comprehensive forum website where users can ask and answer CS related questions. Our platform supports image uploading, CRUD operations, pagination, user authentication, and post sorting/searching capabilities.
-                            </p>
-                            <p className={styles.technologies}>PHP, Laravel, CSS, MySQL, HTML, Javascript</p>
-                            <GithubStats repository={repositoryByName.get('intramuralcs')} />
-                            <a href="https://github.com/Jordans2299/intramuralCS" className={styles.projDetails} target="_blank" rel="noopener noreferrer">View Source</a>
-                        </div>
-                        <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
-                    </div>
-                </div>
-
-                <div className={styles.projCard}>
-                    <div className={styles.projItem}>
-                        <div className={styles.projImg}>
-                            <a href="https://money.jordanstoneportfolio.com" target="_blank" rel="noopener noreferrer">
-                                <Image src={moneyImg} alt="Ethereum Money Pool app screenshot" style={{ height: 'auto' }} />
-                            </a>
-                        </div>
-                        <div className={styles.projDescription}>
-                            <h6>Web Development/Smart Contracts</h6>
-                            <a className={styles.profLink} href="https://money.jordanstoneportfolio.com" target="_blank" rel="noopener noreferrer">
-                                <h1 className={styles.projTitle}>Ethereum Money Pool</h1>
-                            </a>
-                            <p>
-                                Ethereum Money Pool platform uses smart contracts for secure, decentralized transactions. Create custom pools, invite participants with wallet addresses, and a random selection algorithm determines the winner who receives the entire pool.
-                            </p>
-                            <p className={styles.technologies}>Next.js, Solidity, Javascript, CSS, HTML, Tailwind</p>
-                            <GithubStats repository={repositoryByName.get('money-pool-solidity-nextjs')} />
-                            <a href="https://github.com/Jordans2299/Money-pool-solidity-nextjs" className={styles.projDetails} target="_blank" rel="noopener noreferrer">View Source</a>
-                        </div>
-                        <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
-                    </div>
-                </div>
-
-                <div className={styles.projCard}>
-                    <div className={styles.projItem}>
-                        <div className={styles.projImg}>
-                            <a href="https://smile.jordanstoneportfolio.com" target="_blank" rel="noopener noreferrer">
-                                <Image src={smileImg} alt="World Happiness data visualization screenshot" style={{ height: 'auto' }} />
-                            </a>
-                        </div>
-                        <div className={styles.projDescription}>
-                            <h6>Web Development</h6>
-                            <a className={styles.profLink} href="https://smile.jordanstoneportfolio.com" target="_blank" rel="noopener noreferrer">
-                                <h1 className={styles.projTitle}>World Happiness</h1>
-                            </a>
-                            <p>
-                                Provides interactive visualizations and informative descriptions based on happiness index data. Explore global happiness trends and patterns, as well as the factors that contribute to overall happiness with our user-friendly platform.
-                            </p>
-                            <p className={styles.technologies}>D3.js, Javascript, CSS, HTML, Bootstrap, Python</p>
-                            <GithubStats repository={repositoryByName.get('smile-visualizations')} />
-                            <a href="https://github.com/Jordans2299/smile-visualizations" className={styles.projDetails} target="_blank" rel="noopener noreferrer">View Source</a>
-                        </div>
-                        <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
-                    </div>
-                </div>
-
-                <div className={styles.projCard}>
-                    <div className={styles.projItem}>
-                        <div className={styles.projImg}>
-                            <a href="https://chrome.google.com/webstore/detail/odin-office-gpt-3-email-a/ifcmjhbpkjjpfmfkfakbgighemgioein?hl=en" target="_blank" rel="noopener noreferrer">
-                                <Image src={odinImg} alt="Odin Office Chrome extension screenshot" style={{ height: 'auto' }} />
-                            </a>
-                        </div>
-                        <div className={styles.projDescription}>
-                            <h6>Browser Extension</h6>
-                            <a className={styles.profLink} href="https://chrome.google.com/webstore/detail/odin-office-gpt-3-email-a/ifcmjhbpkjjpfmfkfakbgighemgioein?hl=en" target="_blank" rel="noopener noreferrer">
-                                <h1 className={styles.projTitle}>Odin Office - AI Email Writer</h1>
-                            </a>
-                            <p>
-                                Odin Office, a Chrome extension, uses OpenAI's GPT-3 API to generate personalized emails. Integrated with Gmail, it offers professional communication without typing.
-                            </p>
-                            <p className={styles.technologies}>Javascript, CSS, HTML, OpenAI API</p>
-                            <GithubStats repository={repositoryByName.get('email_gpt3_extension')} />
-                            <a href="https://github.com/Jordans2299/email_gpt3_extension" className={styles.projDetails} target="_blank" rel="noopener noreferrer">View Source</a>
-                        </div>
-                        <div className={`${styles.projStatus} ${styles.inProgress}`}> In Progress</div>
-                    </div>
-                </div>
-
-                <div className={styles.projCard}>
-                    <div className={styles.projItem}>
-                        <div className={styles.projImg}>
-                            <a href="https://quiz.jordanstoneportfolio.com" target="_blank" rel="noopener noreferrer">
-                                <Image src={quizImg} alt="Quiz app screenshot" style={{ height: 'auto' }} />
-                            </a>
-                        </div>
-                        <div className={styles.projDescription}>
-                            <h6>Web Development</h6>
-                            <a className={styles.profLink} href="https://quiz.jordanstoneportfolio.com" target="_blank" rel="noopener noreferrer">
-                                <h1 className={styles.projTitle}>Quiz App</h1>
-                            </a>
-                            <p>
-                                This app provides a fun way to test your knowledge. It fetches 10 random questions using an external API and scores your answers at the end, offering an engaging user experience. Give it a try and see how you fare!
-                            </p>
-                            <p className={styles.technologies}>Vue.js, Javascript, CSS, HTML</p>
-                            <GithubStats repository={repositoryByName.get('quiz_app')} />
-                            <a href="https://github.com/Jordans2299/quiz_app" className={styles.projDetails} target="_blank" rel="noopener noreferrer">View Source</a>
-                        </div>
-                        <div className={`${styles.projStatus} ${styles.completed}`}> Completed</div>
-                    </div>
-                </div>
+                        <span className={styles.viewDetails}>View Details →</span>
+                    </Link>
+                ))}
             </div>
         </div>
-
-    )
+    );
 }

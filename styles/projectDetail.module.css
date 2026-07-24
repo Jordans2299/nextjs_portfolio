@@ -1,0 +1,250 @@
+.page {
+    min-height: 100vh;
+    padding: 10rem 2rem 6rem;
+}
+
+.container {
+    max-width: 100rem;
+    margin: 0 auto;
+}
+
+.backLink {
+    display: inline-block;
+    margin-bottom: 4rem;
+    font-family: var(--mr-mono, monospace);
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    color: rgba(255, 45, 45, 0.85);
+    text-decoration: none;
+    transition: color 200ms ease;
+}
+.backLink:hover {
+    color: rgb(255, 45, 45);
+}
+
+.hero {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+    margin-bottom: 5rem;
+}
+
+.imageWrap {
+    flex: 0 0 42%;
+    border-radius: 1.2rem;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info {
+    flex: 1;
+    position: relative;
+}
+
+.statusBadge {
+    display: inline-block;
+    padding: 0.5rem 1.4rem;
+    border-radius: 10rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    margin-bottom: 1.6rem;
+}
+.statusEarlyAccess {
+    background-color: rgba(196, 183, 66, 0.12);
+    border: 1px solid rgba(196, 183, 66, 0.35);
+    color: rgb(196, 183, 66);
+}
+.statusCompleted {
+    background-color: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    color: rgba(110, 220, 150, 0.85);
+}
+.statusInProgress {
+    background-color: rgba(96, 165, 250, 0.1);
+    border: 1px solid rgba(96, 165, 250, 0.32);
+    color: rgba(120, 180, 250, 0.9);
+}
+
+.category {
+    font-size: 1.4rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(232, 232, 240, 0.5);
+}
+.title {
+    font-size: 4rem;
+    font-weight: 600;
+    margin: 0.6rem 0 1.2rem;
+    color: #f2f2f5;
+}
+.metrics {
+    font-size: 1.5rem;
+    color: rgba(255, 45, 45, 0.85);
+    margin-bottom: 2.5rem;
+}
+
+.linkRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+.primaryBtn {
+    display: inline-flex;
+    align-items: center;
+    padding: 1.1rem 2.4rem;
+    background-color: rgba(232, 232, 240, 0.9);
+    color: #0a0a0a;
+    border-radius: 0.8rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 200ms ease;
+    white-space: nowrap;
+}
+.primaryBtn:hover {
+    background-color: #ffffff;
+}
+.secondaryBtn {
+    display: inline-flex;
+    align-items: center;
+    padding: 1.1rem 2.4rem;
+    border: 1px solid rgba(255, 45, 45, 0.4);
+    border-radius: 0.8rem;
+    font-size: 1.4rem;
+    color: rgb(255, 45, 45);
+    text-decoration: none;
+    transition: border-color 200ms ease, background-color 200ms ease;
+    white-space: nowrap;
+}
+.secondaryBtn:hover {
+    border-color: rgb(255, 45, 45);
+    background-color: rgba(255, 45, 45, 0.08);
+}
+
+.body {
+    max-width: 72rem;
+}
+.description {
+    font-size: 1.7rem;
+    line-height: 1.8;
+    color: rgba(232, 232, 240, 0.8);
+    margin-bottom: 2.5rem;
+}
+.bulletList {
+    padding-left: 2rem;
+    margin-bottom: 3rem;
+}
+.bulletList li {
+    font-size: 1.5rem;
+    line-height: 1.7;
+    color: rgba(232, 232, 240, 0.7);
+    margin-bottom: 0.8rem;
+}
+
+.sectionLabel {
+    font-family: var(--mr-mono, monospace);
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 45, 45, 0.75);
+    margin-bottom: 1.2rem;
+}
+.techSection {
+    margin-bottom: 3rem;
+}
+.techRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+.techPill {
+    font-size: 1.15rem;
+    padding: 0.5rem 1.3rem;
+    border-radius: 10rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: rgba(232, 232, 240, 0.7);
+}
+.githubSection {
+    margin-bottom: 2rem;
+}
+.githubStats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    color: rgba(232, 232, 240, 0.6);
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+}
+.repoDescription {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: rgba(232, 232, 240, 0.6);
+    margin-bottom: 1.5rem;
+}
+.commitList {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.commitList li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.commitList a {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    min-width: 0;
+    text-decoration: none;
+    color: inherit;
+}
+.commitSha {
+    flex-shrink: 0;
+    font-family: var(--mr-mono, monospace);
+    font-size: 1.1rem;
+    color: rgba(255, 45, 45, 0.75);
+}
+.commitMessage {
+    font-size: 1.3rem;
+    color: rgba(232, 232, 240, 0.75);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: color 200ms ease;
+}
+.commitList a:hover .commitMessage {
+    color: #f2f2f5;
+}
+.commitDate {
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    color: rgba(232, 232, 240, 0.4);
+    white-space: nowrap;
+}
+
+@media (max-width: 800px) {
+    .page {
+        padding: 8rem 1.5rem 4rem;
+    }
+    .hero {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+    .imageWrap {
+        flex: unset;
+        width: 100%;
+    }
+    .title {
+        font-size: 3rem;
+    }
+}

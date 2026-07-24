@@ -6,27 +6,20 @@ import Image from 'next/image';
 
 const companies = [attImg, ubsImg, washuImg];
 const companyNames = ['AT&T', 'UBS', 'WashU'];
-const logoWidths = [244, 261, 100];
+const logoWidths = [90, 96, 34];
+const wordmarks = [null, null, 'WashU'];
 
 const HorizontalFeed = () => {
-  const logos = [];
-  for (let i = 0; i < companies.length; ++i) {
-    logos.push(
-      <div key={`logo-${i}`} className={styles.logoWrapper}>
-        <Image className={styles.logoImg} src={companies[i]} width={logoWidths[i]} height={100} alt={companyNames[i]} style={{ width: `${logoWidths[i]}px`, height: 'auto' }} />
-      </div>
-    );
-    logos.push(
-      <div key={`logo-clone-${i}`} className={`${styles.logoWrapper} ${styles.clone}`}>
-        <Image className={styles.logoImg} src={companies[i]} width={logoWidths[i]} height={100} alt={companyNames[i]} style={{ width: `${logoWidths[i]}px`, height: 'auto' }} />
-      </div>
-    );
-  }
-
   return (
     <div className={styles.wrapper}>
+      <p className={styles.label}>trusted by teams at</p>
       <div className={styles.affiliations}>
-        {logos}
+        {companies.map((logo, i) => (
+          <div key={`logo-${i}`} className={styles.logoChip}>
+            <Image className={styles.logoImg} src={logo} width={logoWidths[i]} height={40} alt={companyNames[i]} style={{ width: `${logoWidths[i]}px`, height: 'auto' }} />
+            {wordmarks[i] && <span className={styles.wordmark}>{wordmarks[i]}</span>}
+          </div>
+        ))}
       </div>
     </div>
   );
