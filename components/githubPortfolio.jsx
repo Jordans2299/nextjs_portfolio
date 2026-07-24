@@ -190,7 +190,7 @@ export default function GithubPortfolio({ github }) {
         <span className={styles.kicker}>Open source &amp; recent work</span>
         <h2 id="github-heading">GitHub activity</h2>
         <p>
-          Live development history and the public projects finding an audience beyond my featured work.
+          Live look at my development history and the public projects.
         </p>
       </header>
 

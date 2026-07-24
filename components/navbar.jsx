@@ -25,6 +25,9 @@ export default function NavBar() {
                     <a href="#timeline" className={styles.navLink} onClick={() => setOpen(false)}>Experiences</a>
                 </li>
                 <li>
+                    <a href="#articles" className={styles.navLink} onClick={() => setOpen(false)}>Articles</a>
+                </li>
+                <li>
                     <a href="#contact" className={styles.navLink} onClick={() => setOpen(false)}>Contact</a>
                 </li>
             </ul>
