@@ -146,6 +146,23 @@
     margin-bottom: 0.8rem;
 }
 
+.gallery {
+    display: grid;
+    margin: 3.5rem 0;
+    gap: 1.5rem;
+}
+.gallery figure {
+    margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.2rem;
+    background: rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+.gallery img {
+    display: block;
+    margin: 0;
+}
+
 .sectionLabel {
     font-family: var(--mr-mono, monospace);
     font-size: 1.1rem;

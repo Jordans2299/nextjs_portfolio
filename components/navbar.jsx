@@ -22,6 +22,9 @@ export default function NavBar() {
                     <a href="#projects" className={styles.navLink} onClick={() => setOpen(false)}>Projects</a>
                 </li>
                 <li>
+                    <a href="#skills" className={styles.navLink} onClick={() => setOpen(false)}>Skills</a>
+                </li>
+                <li>
                     <a href="#timeline" className={styles.navLink} onClick={() => setOpen(false)}>Experiences</a>
                 </li>
                 <li>

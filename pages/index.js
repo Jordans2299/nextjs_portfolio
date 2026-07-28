@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import Navbar from "../components/navbar.jsx";
 import About from "../components/about.jsx";
 import Projects from "../components/projects.jsx";
+import Skills from "../components/skills.jsx";
 import GithubPortfolio from "../components/githubPortfolio.jsx";
 import Timeline from '../components/timeline.jsx';
 import Blog from '../components/blog.jsx';
@@ -38,6 +39,7 @@ export default function Home() {
       <Navbar />
       <About />
       <Projects github={github} />
+      <Skills />
       <GithubPortfolio github={github} />
       <Timeline />
       <Blog />

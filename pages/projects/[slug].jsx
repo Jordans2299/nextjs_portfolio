@@ -92,6 +92,20 @@ export default function ProjectDetail({ project }) {
                         </ul>
                     )}
 
+                    {project.gallery?.length > 0 && (
+                        <div className={styles.gallery}>
+                            {project.gallery.map((item) => (
+                                <figure key={item.alt}>
+                                    <Image
+                                        src={item.image}
+                                        alt={item.alt}
+                                        style={{ width: '100%', height: 'auto' }}
+                                    />
+                                </figure>
+                            ))}
+                        </div>
+                    )}
+
                     <div className={styles.techSection}>
                         <h6 className={styles.sectionLabel}>Built with</h6>
                         <div className={styles.techRow}>

@@ -1,0 +1,166 @@
+.section {
+    position: relative;
+    padding: 10rem 5rem 7rem;
+    overflow: hidden;
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 13rem;
+    left: 50%;
+    width: 60rem;
+    height: 24rem;
+    background: radial-gradient(circle, rgba(255, 45, 45, 0.09), transparent 68%);
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.header {
+    position: relative;
+    max-width: 74rem;
+    margin: 0 auto 2.6rem;
+    text-align: center;
+}
+
+.kicker {
+    color: rgb(255, 45, 45);
+    font-family: var(--mr-mono, monospace);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.header h2 {
+    margin: 0.8rem 0 1.2rem;
+    color: #e8e8f0;
+    font-size: clamp(3.6rem, 5vw, 5.6rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+}
+
+.header p {
+    color: rgba(232, 232, 240, 0.64);
+    font-size: 1.7rem;
+    line-height: 1.7;
+}
+
+.skill i {
+    display: inline-block;
+    width: 0.7rem;
+    height: 0.7rem;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: rgb(255, 45, 45);
+    box-shadow: 0 0 0.7rem rgba(255, 45, 45, 0.45);
+}
+
+.grid {
+    position: relative;
+    display: grid;
+    max-width: 118rem;
+    margin: 3.4rem auto 0;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.4rem;
+}
+
+.card {
+    position: relative;
+    min-width: 0;
+    padding: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.2rem;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.022));
+    box-shadow: 0 1.6rem 4rem rgba(0, 0, 0, 0.2);
+    transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+}
+
+.card:hover {
+    border-color: rgba(255, 45, 45, 0.35);
+    box-shadow: 0 1.8rem 4.5rem rgba(0, 0, 0, 0.3);
+    transform: translateY(-0.4rem);
+}
+
+.cardTop {
+    display: flex;
+    margin-bottom: 2.2rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: var(--mr-mono, monospace);
+}
+
+.index {
+    color: rgba(255, 45, 45, 0.55);
+    font-size: 1.1rem;
+}
+
+.command {
+    overflow: hidden;
+    color: rgba(232, 232, 240, 0.32);
+    font-size: 1rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card h3 {
+    margin-bottom: 1rem;
+    color: #e8e8f0;
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+
+.card > p {
+    min-height: 7.5rem;
+    color: rgba(232, 232, 240, 0.52);
+    font-size: 1.35rem;
+    line-height: 1.65;
+}
+
+.skillList {
+    margin: 1.8rem 0 0;
+    padding: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    list-style: none;
+}
+
+.skill {
+    display: flex;
+    min-height: 4.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    color: rgba(232, 232, 240, 0.9);
+    font-size: 1.3rem;
+}
+
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card > p {
+        min-height: auto;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .section {
+        padding: 8rem 2rem 5rem;
+    }
+
+    .card {
+        padding: 2.2rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        transition: none;
+    }
+}

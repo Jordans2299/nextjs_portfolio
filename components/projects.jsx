@@ -158,7 +158,7 @@ export default function Projects({ github }) {
         <div className={styles.projectSection} id="projects">
             <div className={styles.projHeader}>
                 <h1>Projects</h1>
-                <h6>Swipe through my recent work</h6>
+                <h6>See some of my recent work</h6>
             </div>
 
             <div className={styles.galleryControls}>
