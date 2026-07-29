@@ -31,7 +31,7 @@ export default function About() {
                 </div>
 
                 <div className={styles.ctaRow}>
-                    <a href="/assets/Resume_2026.pdf" className={styles.resumeBtn} target="_blank" rel="noopener noreferrer">Download Resume</a>
+                    <a href="/assets/Resume_2026.pdf" className={styles.resumeBtn} target="_blank" rel="noopener noreferrer">View Resume</a>
                     <a href="#contact" className={styles.socialBtn}>Say Hello</a>
                 </div>
 
