@@ -16,7 +16,7 @@ export default function About() {
                         </li>
                     </ul>
                     <div className={`${styles.imageSection} ${styles.animate_from_right} ${styles.animate_to_center}`}>
-                        <Image src="/images/profile_silhouette.png" alt="Jordan Stone" className={styles.profilePic} width={340} height={402} loading="eager" priority />
+                        <Image src="/images/profile_photo_8-12.png" alt="Jordan Stone" className={styles.profilePic} width={1024} height={1024} loading="eager" priority />
                         <span className={styles.statusBadge}>
                             <span className={styles.statusDot}></span>
                             root@jordan:~$ available
